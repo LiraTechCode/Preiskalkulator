@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung | LiraTech</title>
+<meta name="description" content="Datenschutzerklärung der LiraTech Website gemäß Art. 13 DSGVO.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logos/liratech-mark.svg" type="image/svg+xml">
+
+<style>
+  @font-face{
+    font-family: "Manrope";
+    src: url("assets/fonts/manrope-variable.woff2") format("woff2-variations"), url("assets/fonts/manrope-variable.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root{
+    --bg: #0A0A0A;
+    --bg-alt: #0D0D0D;
+    --bg-card: #131316;
+    --border: #232329;
+    --white: #FFFFFF;
+    --text-muted: #A3A3AD;
+    --indigo: #5B4FD6;
+    --indigo-light: #7A6FEF;
+    --indigo-glow: rgba(91, 79, 214, 0.35);
+    --radius: 16px;
+    --max-width: 1180px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img, svg { max-width: 100%; display:block; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; margin:0; padding:0; }
+
+  .wrap{
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  h1,h2,h3{
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--indigo-light);
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px;
+    height: 2px;
+    background: var(--indigo);
+    display:inline-block;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 15px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor:pointer;
+    border: 1px solid transparent;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--indigo-light), var(--indigo));
+    color: #fff;
+    box-shadow: 0 8px 24px var(--indigo-glow);
+  }
+  .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px var(--indigo-glow);
+  }
+  .btn-secondary{
+    background: transparent;
+    color: var(--white);
+    border-color: var(--border);
+  }
+  .btn-secondary:hover{
+    border-color: var(--indigo-light);
+    color: var(--indigo-light);
+  }
+  .btn-small{ padding: 10px 20px; font-size: 14px; }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .logo-mark{
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display:block;
+    filter: drop-shadow(0 3px 12px var(--indigo-glow));
+  }
+  .logo-text span{ color: var(--indigo-light); }
+
+  nav.main-nav{
+    display:flex;
+    align-items:center;
+    gap: 32px;
+  }
+  nav.main-nav a.nav-link{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color .2s ease;
+  }
+  nav.main-nav a.nav-link:hover{ color: var(--white); }
+
+  .nav-actions{ display:flex; align-items:center; gap: 24px; }
+
+  nav.main-nav .mobile-cta{ display:none; }
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    padding: 8px;
+  }
+  .menu-toggle svg{ width:26px; height:26px; }
+
+  /* ---------- Legal content ---------- */
+  .legal-page{ padding: 64px 0 100px; }
+  .legal-page .wrap{ max-width: 820px; }
+  .legal-page h1{ font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin-bottom: 8px; }
+  .legal-meta{ color: var(--text-muted); font-size: 14px; margin-bottom: 48px; }
+  .legal-section{ margin-bottom: 40px; }
+  .legal-section h2{ font-size: 19px; margin-bottom: 14px; }
+  .legal-section h3{ font-size: 16px; margin: 20px 0 10px; }
+  .legal-section p{ color: #d6d6db; font-size: 15px; margin: 0 0 12px; }
+  .legal-section ul{ margin: 0 0 12px; padding-left: 0; }
+  .legal-section li{ color: #d6d6db; font-size: 15px; margin-bottom: 6px; padding-left: 18px; position:relative; }
+  .legal-section li::before{ content:"—"; position:absolute; left:0; color: var(--indigo-light); }
+  .legal-section a{ color: var(--indigo-light); text-decoration: underline; }
+  .placeholder{ color: #F0B65C; background: rgba(240,182,92,0.1); border: 1px solid rgba(240,182,92,0.3); padding: 2px 8px; border-radius: 6px; font-size: 14px; }
+  .back-link{ display:inline-flex; align-items:center; gap:8px; margin-bottom: 32px; color: var(--text-muted); font-size: 14px; font-weight:600; }
+  .back-link:hover{ color: var(--indigo-light); }
+
+  /* ---------- Footer ---------- */
+  footer{ padding: 56px 0 32px; border-top: 1px solid var(--border); }
+  .footer-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap:wrap;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .footer-logo{ display:flex; align-items:center; gap:10px; }
+  .footer-logo .logo-mark{ width:32px; height:32px; font-size:14px; }
+  .footer-links{
+    display:flex;
+    gap: 40px;
+    flex-wrap:wrap;
+  }
+  .footer-col h4{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .footer-col a{
+    display:block;
+    font-size: 14.5px;
+    color: #d6d6db;
+    margin-bottom: 10px;
+    transition: color .2s ease;
+  }
+  .footer-col a:hover{ color: var(--indigo-light); }
+  .footer-bottom{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Cookie banner ---------- */
+  .cookie-banner{
+    position: fixed;
+    left: 20px; right: 20px; bottom: 20px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: rgba(19,19,22,0.97);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 26px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    backdrop-filter: blur(16px);
+    z-index: 200;
+    display: none;
+  }
+  .cookie-banner.visible{ display:block; }
+  .cookie-banner-text strong{ display:block; font-size:15px; margin-bottom:6px; }
+  .cookie-banner-text p{ font-size:13.5px; color: var(--text-muted); margin:0; }
+  .cookie-banner-text a{ color: var(--indigo-light); text-decoration: underline; }
+  .cookie-banner-actions{
+    display:flex;
+    gap:12px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .cookie-banner-actions .btn{ flex:1; min-width:150px; }
+
+  @media (max-width: 760px){
+    nav.main-nav{
+      position: fixed;
+      top: 70px;
+      left: 0; right:0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 8px 24px 20px;
+      transform: translateY(-130%);
+      opacity:0;
+      transition: transform .3s ease, opacity .3s ease;
+      z-index: 90;
+    }
+    nav.main-nav.open{ transform: translateY(0); opacity:1; }
+    nav.main-nav a.nav-link{ padding: 12px 0; width:100%; border-bottom: 1px solid var(--border); }
+    .nav-actions .btn-primary{ display:none; }
+    nav.main-nav .mobile-cta{ display:flex; margin-top:16px; width:100%; }
+    .menu-toggle{ display:block; }
+    .footer-top{ flex-direction: column; }
+    .cookie-banner{ left:12px; right:12px; bottom:12px; padding:18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner wrap">
+    <a href="index.html" class="logo" aria-label="LiraTech Startseite">
+      <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="logoTGradientHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:var(--indigo-light)"/>
+            <stop offset="100%" style="stop-color:var(--indigo)"/>
+          </linearGradient>
+        </defs>
+        <rect x="30" y="40" width="28" height="120" rx="5" fill="#fff"/>
+        <rect x="30" y="134" width="64" height="26" rx="5" fill="#fff"/>
+        <rect x="108" y="40" width="86" height="26" rx="5" fill="url(#logoTGradientHeader)"/>
+        <rect x="137" y="66" width="28" height="94" rx="5" fill="url(#logoTGradientHeader)"/>
+      </svg>
+      <span class="logo-text">Lira<span>Tech</span></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a class="nav-link" href="index.html#integrationen">Integrationen</a>
+      <a class="nav-link" href="index.html#leistungen">Leistungen</a>
+      <a class="nav-link" href="automation-rechner.html">Budget-Rechner</a>
+      <a class="nav-link" href="index.html#team">Team</a>
+      <a class="nav-link" href="index.html#faq">FAQ</a>
+      <a href="#booking-link" class="btn btn-primary btn-small mobile-cta js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#booking-link" class="btn btn-primary btn-small js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+        <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="legal-page">
+  <div class="wrap">
+    <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+    <div class="eyebrow">Rechtliches</div>
+    <h1>Datenschutzerklärung</h1>
+    <p class="legal-meta">Informationen gemäß Art. 13, 14 DSGVO</p>
+
+    <div class="legal-section">
+      <h2>1. Verantwortlicher</h2>
+      <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+      <p>
+        Finn Schulte<br>
+        Rotenkruger Weg 61<br>
+        12305 Berlin<br>
+        Telefon: <a href="tel:+4901718190009">0171 8190009</a><br>
+        E-Mail: <a href="mailto:finn@liratech.de">finn@liratech.de</a>
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. Allgemeines zur Datenverarbeitung</h2>
+      <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelmäßig nur nach Einwilligung des Nutzers oder auf Grundlage einer gesetzlichen Erlaubnis (Art. 6 Abs. 1 DSGVO).</p>
+      <p>Soweit für die Verarbeitungsvorgänge personenbezogener Daten eine Einwilligung eingeholt wird, dient Art. 6 Abs. 1 lit. a DSGVO als Rechtsgrundlage. Bei der Verarbeitung, die zur Erfüllung eines Vertrages erforderlich ist, dient Art. 6 Abs. 1 lit. b DSGVO als Rechtsgrundlage. Soweit die Verarbeitung zur Wahrung eines berechtigten Interesses erforderlich ist, dient Art. 6 Abs. 1 lit. f DSGVO als Rechtsgrundlage.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. Bereitstellung der Website und Server-Logfiles</h2>
+      <p>Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sogenannten Logfile gespeichert. Folgende Informationen werden dabei ohne Ihr Zutun erfasst und bis zur automatisierten Löschung gespeichert:</p>
+      <ul>
+        <li>IP-Adresse des anfragenden Rechners</li>
+        <li>Datum und Uhrzeit des Zugriffs</li>
+        <li>Name und URL der abgerufenen Datei</li>
+        <li>Website, von der aus der Zugriff erfolgt (Referrer-URL)</li>
+        <li>verwendeter Browser und ggf. das Betriebssystem</li>
+      </ul>
+      <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO aus unserem berechtigten Interesse an der technisch fehlerfreien Darstellung und der Sicherheit unserer Website.</p>
+      <p>Diese Website wird bei folgendem Hosting-Anbieter gehostet: Plesk01.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>4. Cookies und Einwilligung</h2>
+      <p>Unsere Website verwendet technisch notwendige Cookies, die für den Betrieb der Seite erforderlich sind und ohne die bestimmte Funktionen nicht zur Verfügung stehen. Diese werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO bzw. § 25 Abs. 2 TTDSG eingesetzt.</p>
+      <p>Darüber hinaus setzen wir optionale Cookies (z. B. für Statistik oder Marketing) nur ein, wenn Sie hierzu über unseren Cookie-Banner ausdrücklich eingewilligt haben (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TTDSG). Ihre Einwilligung können Sie jederzeit über den Link „Cookie-Einstellungen“ im Footer dieser Website widerrufen oder anpassen.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>5. Kontaktaufnahme</h2>
+      <p>Wenn Sie per E-Mail oder Telefon Kontakt mit uns aufnehmen, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen erfolgt die Verarbeitung auf Grundlage unseres berechtigten Interesses an der effektiven Bearbeitung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Terminbuchung über Cal.com</h2>
+      <p>Für die Buchung von Beratungsterminen nutzen wir den externen Dienst Cal.com, bereitgestellt von Cal.com, Inc. Wenn Sie über den entsprechenden Button einen Termin buchen, werden Sie auf die Plattform von Cal.com weitergeleitet bzw. es wird dort ein Buchungsformular geladen. Dabei werden die von Ihnen eingegebenen Daten (z. B. Name, E-Mail-Adresse, gewählter Termin) an Cal.com übermittelt und dort verarbeitet.</p>
+      <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, da die Terminbuchung der Anbahnung eines Beratungsvertrags dient. Informationen zum Datenschutz bei Cal.com finden Sie unter <a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a>.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Speicherdauer</h2>
+      <p>Sofern innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Fordern Sie berechtigt die Löschung Ihrer Daten an oder widerrufen Sie eine Einwilligung zur Datenverarbeitung, werden Ihre Daten gelöscht, sofern keine sonstigen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten bestehen (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen).</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Ihre Rechte</h2>
+      <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Im Einzelnen stehen Ihnen folgende Rechte zu:</p>
+      <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerspruchsrecht gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        <li>Recht auf Widerruf erteilter Einwilligungen (Art. 7 Abs. 3 DSGVO)</li>
+      </ul>
+      <p>Zur Ausübung dieser Rechte können Sie sich jederzeit über die im Impressum genannten Kontaktdaten an uns wenden.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>9. Beschwerderecht bei der Aufsichtsbehörde</h2>
+      <p>Ihnen steht außerdem ein Beschwerderecht bei der zuständigen Datenschutzaufsichtsbehörde zu, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt. Da unser Sitz in Berlin liegt, ist die zuständige Aufsichtsbehörde:</p>
+      <p>
+        Berliner Beauftragte für Datenschutz und Informationsfreiheit (BlnBDI)<br>
+        Friedrichstr. 219, 10969 Berlin<br>
+        <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener">www.datenschutz-berlin.de</a>
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>10. Änderung dieser Datenschutzerklärung</h2>
+      <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoTGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:var(--indigo-light)"/>
+              <stop offset="100%" style="stop-color:var(--indigo)"/>
+            </linearGradient>
+          </defs>
+          <rect x="30" y="40" width="28" height="120" rx="5" fill="#fff"/>
+          <rect x="30" y="134" width="64" height="26" rx="5" fill="#fff"/>
+          <rect x="108" y="40" width="86" height="26" rx="5" fill="url(#logoTGradientFooter)"/>
+          <rect x="137" y="66" width="28" height="94" rx="5" fill="url(#logoTGradientFooter)"/>
+        </svg>
+        <span class="logo-text">Lira<span style="color:var(--indigo-light)">Tech</span></span>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:finn@liratech.de" class="js-contact-email">finn@liratech.de</a>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html#integrationen">Integrationen</a>
+          <a href="index.html#leistungen">Leistungen</a>
+          <a href="automation-rechner.html">Budget-Rechner</a>
+          <a href="index.html#team">Team</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="#" id="cookieSettingsLink">Cookie-Einstellungen</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> LiraTech. Alle Rechte vorbehalten.</span>
+      <span>Technologie-Partner: Fonio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= COOKIE BANNER ================= -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie-Einstellungen">
+  <div class="cookie-banner-text">
+    <strong>Wir verwenden Cookies</strong>
+    <p>Wir nutzen technisch notwendige Cookies, damit diese Website funktioniert. Optionale Cookies für Statistik und Marketing setzen wir nur mit Ihrer Einwilligung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  </div>
+  <div class="cookie-banner-actions">
+    <button type="button" class="btn btn-secondary btn-small" id="cookieReject">Nur notwendige</button>
+    <button type="button" class="btn btn-primary btn-small" id="cookieAccept">Alle akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  // ---- Cookie consent ----
+  (function(){
+    const STORAGE_KEY = "liratech-cookie-consent";
+    const banner = document.getElementById("cookieBanner");
+    const acceptBtn = document.getElementById("cookieAccept");
+    const rejectBtn = document.getElementById("cookieReject");
+    const reopenLink = document.getElementById("cookieSettingsLink");
+
+    function getConsent(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e){ return null; }
+    }
+    function setConsent(value){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ value, date: new Date().toISOString() }));
+    }
+    function showBanner(){ banner?.classList.add("visible"); }
+    function hideBanner(){ banner?.classList.remove("visible"); }
+
+    if (banner && !getConsent()) showBanner();
+
+    acceptBtn?.addEventListener("click", () => { setConsent("all"); hideBanner(); });
+    rejectBtn?.addEventListener("click", () => { setConsent("necessary"); hideBanner(); });
+    reopenLink?.addEventListener("click", (e) => { e.preventDefault(); showBanner(); });
+
+    window.getCookieConsent = getConsent;
+  })();
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ---- Mobile menu ----
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+  const iconOpen = document.getElementById("menuIconOpen");
+  const iconClose = document.getElementById("menuIconClose");
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    iconOpen.style.display = isOpen ? "none" : "block";
+    iconClose.style.display = isOpen ? "block" : "none";
+  });
+
+  mainNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      iconOpen.style.display = "block";
+      iconClose.style.display = "none";
+    });
+  });
+</script>
+<script type="module">
+  import { applySiteConfig } from "./assets/js/site-config.js";
+  applySiteConfig(document);
+</script>
+
+</body>
+</html>

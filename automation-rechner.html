@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Kosten Rechner | LiraTech</title>
+  <meta name="description" content="Berechnen Sie unverbindlich das Budget für Ihre individuelle Prozessautomatisierung. API, DATEV, Immobilien, Dokumente, KI und mehr.">
+  <link rel="canonical" href="https://www.liratech.de/automation-rechner">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Automation Kosten Rechner | LiraTech">
+  <meta property="og:description" content="Konfigurieren Sie Ihren Prozess und erhalten Sie direkt eine erste Budgetspanne für Ihre Automatisierung.">
+  <meta property="og:url" content="https://www.liratech.de/automation-rechner">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/logos/liratech-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/automation-calculator.css">
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Direkt zum Budget-Rechner</a>
+
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a href="index.html" class="logo" aria-label="LiraTech Startseite">
+        <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="logoGradientHeader" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7A6FEF"/><stop offset="100%" stop-color="#5B4FD6"/></linearGradient></defs>
+          <rect x="30" y="40" width="28" height="120" rx="5" fill="#fff"/><rect x="30" y="134" width="64" height="26" rx="5" fill="#fff"/>
+          <rect x="108" y="40" width="86" height="26" rx="5" fill="url(#logoGradientHeader)"/><rect x="137" y="66" width="28" height="94" rx="5" fill="url(#logoGradientHeader)"/>
+        </svg>
+        <span class="logo-text">Lira<span>Tech</span></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+        <a class="nav-link" href="index.html#integrationen">Integrationen</a>
+        <a class="nav-link" href="index.html#leistungen">Leistungen</a>
+        <a class="nav-link active" href="automation-rechner.html" aria-current="page">Budget-Rechner</a>
+        <a class="nav-link" href="index.html#team">Team</a>
+        <a class="nav-link" href="index.html#faq">FAQ</a>
+        <a href="#booking" class="btn btn-primary btn-small mobile-cta js-booking-link" target="_blank" rel="noopener">Automation Check buchen</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#booking" class="btn btn-primary btn-small desktop-cta js-booking-link" target="_blank" rel="noopener">Automation Check buchen</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav">
+          <svg class="menu-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="menu-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="calculator-hero" aria-labelledby="calculatorHeroTitle">
+      <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="wrap calculator-hero-inner">
+        <div class="eyebrow">Budgetindikation für Automatisierung</div>
+        <h1 id="calculatorHeroTitle">Was kostet Ihre <span>Automatisierung?</span></h1>
+        <p>Beantworten Sie einige Fragen zu Ihrem Prozess und erhalten Sie eine erste Budgeteinschätzung – kostenlos, unverbindlich und ohne technische Vorkenntnisse.</p>
+        <a class="btn btn-primary btn-large" href="#calculator" id="startCalculator">Automation konfigurieren <span aria-hidden="true">→</span></a>
+        <div class="trust-line" aria-label="Kostenlos, unverbindlich, Dauer etwa zwei bis drei Minuten">
+          <span><i aria-hidden="true">✓</i> Kostenlos</span><span><i aria-hidden="true">✓</i> Unverbindlich</span><span><i aria-hidden="true">✓</i> ca. 2–3 Minuten</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="calculator" aria-label="Automation Budget Calculator">
+      <div class="wrap calculator-shell">
+        <aside class="calculator-context" aria-label="Ihre Konfiguration">
+          <div class="context-kicker">Ihre Konfiguration</div>
+          <h2>Schritt für Schritt zur Budgetspanne.</h2>
+          <p>Ihre Auswahl bleibt beim Zurückgehen erhalten. Kontaktdaten sind für die Berechnung nicht nötig.</p>
+          <div class="context-stats" id="contextStats" aria-live="polite">
+            <div><strong id="selectedProcessCount">0</strong><span>Prozesse</span></div>
+            <div><strong id="selectedSystemCount">0</strong><span>Systeme</span></div>
+          </div>
+          <div class="privacy-note"><span aria-hidden="true">⌁</span> Keine Übertragung oder Speicherung Ihrer Auswahl.</div>
+        </aside>
+
+        <div class="calculator-card">
+          <div class="progress-region" id="progressRegion">
+            <div class="progress-copy"><span id="progressLabel">Schritt 1</span><span id="progressPercent">0 %</span></div>
+            <div class="progress-track" role="progressbar" aria-label="Fortschritt" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" id="progressBar">
+              <span id="progressFill"></span>
+            </div>
+          </div>
+
+          <div id="calculatorApp" aria-live="polite"></div>
+          <noscript><p class="error-message visible">Für den Budget-Rechner muss JavaScript aktiviert sein.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <section class="explanation-section">
+      <div class="wrap explanation-grid">
+        <div><span class="eyebrow">Realistisch statt pauschal</span><h2>Eine erste Orientierung, die technische Realität berücksichtigt.</h2></div>
+        <div class="explanation-points">
+          <article><span>01</span><div><h3>Systeme &amp; Zugänge</h3><p>Direkte Schnittstellen, Dateien oder bediente Oberflächen werden unterschiedlich bewertet.</p></div></article>
+          <article><span>02</span><div><h3>Daten &amp; Logik</h3><p>Formate, Sonderfälle, Freigaben und KI beeinflussen den tatsächlichen Umsetzungsaufwand.</p></div></article>
+          <article><span>03</span><div><h3>Betrieb &amp; Betreuung</h3><p>Care und technische Infrastruktur werden transparent vom einmaligen Projektbudget getrennt.</p></div></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a class="footer-logo logo" href="index.html" aria-label="LiraTech Startseite">
+          <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="30" y="40" width="28" height="120" rx="5" fill="#fff"/><rect x="30" y="134" width="64" height="26" rx="5" fill="#fff"/><rect x="108" y="40" width="86" height="26" rx="5" fill="#7A6FEF"/><rect x="137" y="66" width="28" height="94" rx="5" fill="#5B4FD6"/></svg>
+          <span class="logo-text">Lira<span>Tech</span></span>
+        </a>
+        <div class="footer-links">
+          <div class="footer-col"><h3>Kontakt</h3><a class="js-contact-email" href="mailto:finn@liratech.de">finn@liratech.de</a></div>
+          <div class="footer-col"><h3>Navigation</h3><a href="index.html#integrationen">Integrationen</a><a href="index.html#leistungen">Leistungen</a><a href="automation-rechner.html">Budget-Rechner</a><a href="index.html#team">Team</a></div>
+          <div class="footer-col"><h3>Rechtliches</h3><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="#" id="cookieSettingsLink">Cookie-Einstellungen</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span class="js-current-year"></span> LiraTech. Alle Rechte vorbehalten.</span><span>Automation, die Arbeit abnimmt.</span></div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie-Einstellungen">
+    <div><strong>Wir verwenden Cookies</strong><p>Wir nutzen technisch notwendige Cookies. Optionale Cookies setzen wir nur mit Ihrer Einwilligung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p></div>
+    <div class="cookie-actions"><button class="btn btn-secondary btn-small" type="button" id="cookieReject">Nur notwendige</button><button class="btn btn-primary btn-small" type="button" id="cookieAccept">Alle akzeptieren</button></div>
+  </div>
+
+  <script type="module" src="assets/js/calculator/calculator-ui.js"></script>
+</body>
+</html>

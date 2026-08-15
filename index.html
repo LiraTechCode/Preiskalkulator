@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiraTech: Prozessautomatisierung für KMU</title>
+<meta name="description" content="LiraTech entwickelt maßgeschneiderte Automatisierungen für kleine und mittlere Unternehmen: Telefon, E-Mail, Dokumente, Terminplanung und CRM. Individuell entwickelt, DSGVO-konform. Jetzt kostenloses Beratungsgespräch buchen.">
+
+<!-- Open Graph Platzhalter -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiraTech: Prozessautomatisierung für KMU">
+<meta property="og:description" content="Wir automatisieren die Prozesse, die Ihr Team ausbremsen, individuell entwickelt, DSGVO-konform, ohne technisches Vorwissen.">
+<meta property="og:image" content="https://placeholder.liratech.de/og-image.png">
+<meta property="og:url" content="https://www.liratech.de">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logos/liratech-mark.svg" type="image/svg+xml">
+
+<style>
+  @font-face{
+    font-family: "Manrope";
+    src: url("assets/fonts/manrope-variable.woff2") format("woff2-variations"), url("assets/fonts/manrope-variable.woff2") format("woff2");
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root{
+    --bg: #0A0A0A;
+    --bg-alt: #0D0D0D;
+    --bg-card: #131316;
+    --border: #232329;
+    --white: #FFFFFF;
+    --text-muted: #A3A3AD;
+    --indigo: #5B4FD6;
+    --indigo-light: #7A6FEF;
+    --indigo-glow: rgba(91, 79, 214, 0.35);
+    --radius: 16px;
+    --max-width: 1180px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img, svg { max-width: 100%; display:block; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; margin:0; padding:0; }
+
+  .wrap{
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section{ position: relative; }
+
+  h1,h2,h3{
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--indigo-light);
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 18px;
+    height: 2px;
+    background: var(--indigo);
+    display:inline-block;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 15px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor:pointer;
+    border: 1px solid transparent;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--indigo-light), var(--indigo));
+    color: #fff;
+    box-shadow: 0 8px 24px var(--indigo-glow);
+  }
+  .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px var(--indigo-glow);
+  }
+  .btn-secondary{
+    background: transparent;
+    color: var(--white);
+    border-color: var(--border);
+  }
+  .btn-secondary:hover{
+    border-color: var(--indigo-light);
+    color: var(--indigo-light);
+  }
+  .btn-small{ padding: 10px 20px; font-size: 14px; }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .logo-mark{
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display:block;
+    filter: drop-shadow(0 3px 12px var(--indigo-glow));
+  }
+  .logo-text span{ color: var(--indigo-light); }
+
+  nav.main-nav{
+    display:flex;
+    align-items:center;
+    gap: 32px;
+  }
+  nav.main-nav a.nav-link{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color .2s ease;
+  }
+  nav.main-nav a.nav-link:hover{ color: var(--white); }
+
+  .nav-actions{ display:flex; align-items:center; gap: 24px; }
+
+  nav.main-nav .mobile-cta{ display:none; }
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    padding: 8px;
+  }
+  .menu-toggle svg{ width:26px; height:26px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 110px 0 96px;
+    position: relative;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+  .hero-bg .blob{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(80px);
+    opacity:.5;
+    animation: blobFloat 20s ease-in-out infinite;
+    will-change: transform;
+  }
+  .hero-bg .blob-1{ width:520px; height:520px; background: var(--indigo); top:-200px; left:-140px; }
+  .hero-bg .blob-2{ width:440px; height:440px; background:#8B7CFF; top:40px; right:-160px; animation-delay:-7s; }
+  .hero-bg .blob-3{ width:380px; height:380px; background:#3E2FA8; bottom:-200px; left:28%; animation-delay:-13s; }
+  @keyframes blobFloat{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    33%{ transform: translate(30px,-36px) scale(1.08); }
+    66%{ transform: translate(-24px,24px) scale(0.94); }
+  }
+  .hero-grid{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 15%, black 40%, transparent 80%);
+    mask-image: radial-gradient(ellipse 70% 55% at 50% 15%, black 40%, transparent 80%);
+    pointer-events:none;
+  }
+  .hero-workflow-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    width:100%;
+    height:100%;
+    opacity:.16;
+    pointer-events:none;
+  }
+  .wf-node{
+    animation: wfPulse 3.5s ease-in-out infinite;
+  }
+  @keyframes wfPulse{
+    0%,100%{ opacity:.35; }
+    50%{ opacity:1; }
+  }
+  .wf-signal{
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.9));
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+    line-height: 1.08;
+    margin-bottom: 24px;
+  }
+  .hero h1 .accent{
+    background: linear-gradient(90deg, var(--indigo-light), #C4B8FF, var(--indigo-light));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite;
+  }
+  @keyframes shine{ to{ background-position: -200% center; } }
+  .hero h1 .rotating-word{
+    display:inline-block;
+    background: linear-gradient(90deg, var(--indigo-light), #C4B8FF, var(--indigo-light));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite;
+  }
+  .hero h1 .type-cursor{
+    display:inline-block;
+    color: var(--indigo-light);
+    animation: blinkCursor 1s step-end infinite;
+    margin-left: 2px;
+  }
+  @keyframes blinkCursor{
+    0%,100%{ opacity:1; }
+    50%{ opacity:0; }
+  }
+
+  @keyframes heroFadeUp{
+    from{ opacity:0; transform: translateY(22px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  .hero-anim{
+    opacity:0;
+    animation: heroFadeUp .8s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero-anim-1{ animation-delay:.05s; }
+  .hero-anim-2{ animation-delay:.15s; }
+  .hero-anim-3{ animation-delay:.25s; }
+  .hero-anim-4{ animation-delay:.35s; }
+  .hero-anim-5{ animation-delay:.45s; }
+  .hero-anim-6{ animation-delay:.3s; }
+
+  @keyframes ctaPulse{
+    0%,100%{ box-shadow: 0 8px 24px var(--indigo-glow); }
+    50%{ box-shadow: 0 8px 44px rgba(91,79,214,0.7); }
+  }
+  .btn-primary.pulse{ animation: ctaPulse 2.6s ease-in-out infinite; }
+  p.subhead{
+    font-size: 19px;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 36px;
+  }
+  .hero-ctas{
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .hero-trust{
+    display:flex;
+    align-items:center;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .hero-trust strong{ color:#fff; }
+
+  /* ---------- Hero visual: Voice Orb card ---------- */
+  .hero-visual{ position:relative; }
+  .orb-card-wrap{ position:relative; }
+
+  .call-test-btn svg{ flex-shrink:0; }
+
+  .orb-card{
+    position:relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+    padding: 30px 26px 26px;
+    backdrop-filter: blur(20px);
+    animation: cardGlow 4.5s ease-in-out infinite;
+  }
+  @keyframes cardGlow{
+    0%,100%{ box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 40px rgba(91,79,214,0.16); }
+    50%{ box-shadow: 0 30px 90px rgba(0,0,0,0.6), 0 0 70px rgba(91,79,214,0.34); }
+  }
+
+  .call-status{
+    display:flex; align-items:center; gap:8px;
+    font-size: 13px; color: var(--text-muted); font-weight:600;
+  }
+  .call-status .dot{
+    width:8px; height:8px; border-radius:50%;
+    background: #4ADE80;
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.2);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse{
+    0%,100%{ box-shadow: 0 0 0 3px rgba(74,222,128,0.2); }
+    50%{ box-shadow: 0 0 0 6px rgba(74,222,128,0.08); }
+  }
+  .call-timer{ font-size:13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  .orb-card-header{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+
+  .flow-pipeline{
+    display:flex;
+    flex-direction:column;
+  }
+  .flow-step{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.015);
+    transition: background .4s ease, border-color .4s ease;
+  }
+  .flow-step.active{
+    background: rgba(91,79,214,0.14);
+    border-color: rgba(122,111,239,0.5);
+  }
+  .flow-step-icon{
+    position:relative;
+    width:38px; height:38px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(255,255,255,0.05);
+    flex-shrink:0;
+    transition: background .4s ease, transform .4s ease, box-shadow .4s ease;
+  }
+  .flow-step.active .flow-step-icon{
+    background: linear-gradient(135deg, var(--indigo-light), var(--indigo));
+    transform: scale(1.08);
+    box-shadow: 0 0 22px var(--indigo-glow);
+  }
+  .flow-step-icon svg{ width:17px; height:17px; stroke: var(--text-muted); transition: stroke .4s ease; }
+  .flow-step.active .flow-step-icon svg{ stroke:#fff; }
+  .flow-step-text{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .flow-step-text strong{ font-size:13.5px; font-weight:700; }
+  .flow-step-text span{ font-size:12px; color: var(--text-muted); }
+  .flow-step-check{
+    width:22px; height:22px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(74,222,128,0.15);
+    color:#4ADE80;
+    font-size:11px;
+    font-weight:700;
+    flex-shrink:0;
+    opacity:0;
+    transform: scale(0.5);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .flow-step.done .flow-step-check{ opacity:1; transform:scale(1); }
+
+  .flow-connector{
+    width:2px;
+    height:20px;
+    margin-left: 33px;
+    background: rgba(255,255,255,0.08);
+    position:relative;
+    overflow:hidden;
+  }
+  .flow-connector::after{
+    content:"";
+    position:absolute;
+    left:0; top:-100%;
+    width:100%; height:100%;
+    background: linear-gradient(180deg, transparent, var(--indigo-light) 50%, transparent);
+    animation: flowDown 1.8s linear infinite;
+  }
+  @keyframes flowDown{
+    to{ transform: translateY(200%); }
+  }
+
+  .orb-stage{
+    position:relative;
+    width:132px; height:132px;
+    margin: 4px auto 22px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .orb-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border: 1.5px solid rgba(122,111,239,0.55);
+    animation: ringPulse 2.6s ease-out infinite;
+  }
+  .orb-ring.ring-2{ animation-delay: 1.3s; }
+  @keyframes ringPulse{
+    0%{ transform: scale(0.62); opacity:0.9; }
+    100%{ transform: scale(1.4); opacity:0; }
+  }
+  .orb-core{
+    position:relative;
+    z-index:1;
+    width: 74px; height:74px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--indigo-light), var(--indigo) 65%, #3a2f9e 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 40px var(--indigo-glow), inset 0 0 20px rgba(255,255,255,0.18);
+    animation: orbBreathe 3s ease-in-out infinite;
+  }
+  .orb-core svg{ width:28px; height:28px; stroke:#fff; }
+  @keyframes orbBreathe{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.07); }
+  }
+
+  .waveform{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    height:34px;
+    margin: 0 auto 22px;
+  }
+  .waveform span{
+    width:4px;
+    border-radius:2px;
+    background: linear-gradient(180deg, var(--indigo-light), var(--indigo));
+    animation: wave 1.1s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .waveform span:nth-child(1){ height:28%; animation-delay:-1.1s; }
+  .waveform span:nth-child(2){ height:52%; animation-delay:-0.9s; }
+  .waveform span:nth-child(3){ height:80%; animation-delay:-0.7s; }
+  .waveform span:nth-child(4){ height:100%; animation-delay:-0.5s; }
+  .waveform span:nth-child(5){ height:65%; animation-delay:-0.3s; }
+  .waveform span:nth-child(6){ height:40%; animation-delay:-0.1s; }
+  .waveform span:nth-child(7){ height:70%; animation-delay:-0.95s; }
+  .waveform span:nth-child(8){ height:95%; animation-delay:-0.65s; }
+  .waveform span:nth-child(9){ height:55%; animation-delay:-0.45s; }
+  .waveform span:nth-child(10){ height:35%; animation-delay:-0.25s; }
+  .waveform span:nth-child(11){ height:60%; animation-delay:-0.8s; }
+  .waveform span:nth-child(12){ height:30%; animation-delay:-0.15s; }
+  @keyframes wave{
+    0%,100%{ transform: scaleY(0.45); opacity:.65; }
+    50%{ transform: scaleY(1); opacity:1; }
+  }
+
+  .live-caption{
+    min-height: 62px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 20px;
+  }
+  .caption-label{
+    display:block;
+    font-size: 11px;
+    font-weight:700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--indigo-light);
+    margin-bottom: 6px;
+  }
+  #captionText{
+    margin:0;
+    font-size: 14.5px;
+    color: #fff;
+    transition: opacity .3s ease;
+  }
+
+  .call-mock-footer{
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    gap: 12px;
+  }
+  .call-mock-footer strong{ color: #4ADE80; }
+
+  .float-badge{
+    position:absolute;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding: 11px 18px;
+    background: rgba(19,19,22,0.9);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px;
+    font-size:13px;
+    font-weight:700;
+    white-space:nowrap;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+    animation: badgeFloat 5s ease-in-out infinite;
+    z-index:2;
+  }
+  .badge-top-left{ top:-16px; left:-16px; }
+  .badge-bottom-right{ bottom:-16px; right:-16px; animation-delay:-2.5s; }
+  .badge-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:#4ADE80;
+    box-shadow:0 0 0 3px rgba(74,222,128,.25);
+    flex-shrink:0;
+  }
+  @keyframes badgeFloat{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-9px); }
+  }
+
+  /* ---------- Partner-Logos ---------- */
+  .partners-strip{
+    position: relative;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+    overflow: hidden;
+  }
+  .partners-strip::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 300px;
+    background: radial-gradient(ellipse, var(--indigo-glow) 0%, transparent 70%);
+    filter: blur(60px);
+    opacity: .5;
+    pointer-events: none;
+  }
+  .partners-label{
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+  }
+  .partners-track-wrap{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .partners-track{
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    width: max-content;
+    animation: logosScroll 30s linear infinite;
+  }
+  .partners-track:hover{ animation-play-state: paused; }
+  @keyframes logosScroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  .partner-logo{
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 26px;
+    filter: grayscale(1) brightness(1.8);
+    opacity: .5;
+    transition: filter .3s ease, opacity .3s ease, transform .3s ease;
+  }
+  .partner-logo:hover{
+    filter: grayscale(0) brightness(1);
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  .partner-logo img{
+    max-height: 26px;
+    max-width: 130px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .partner-logo-fox{ gap: 9px; }
+  .partner-logo-fox svg{ width: 26px; height: auto; flex-shrink: 0; }
+  .partner-logo-fox span{ font-size: 14px; font-weight: 800; color: #fff; white-space: nowrap; }
+
+  @media (max-width: 760px){
+    .partners-track{ gap: 36px; }
+    .partner-logo{ height: 20px; }
+    .partner-logo img{ max-height: 20px; max-width: 100px; }
+    .partner-logo-fox svg{ width: 20px; }
+    .partner-logo-fox span{ font-size: 12px; }
+  }
+
+  /* ---------- Section generic ---------- */
+  .section{ padding: 88px 0; }
+  .section-head{
+    max-width: 680px;
+    margin: 0 auto 56px;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 16px;
+  }
+  .section-head p{
+    color: var(--text-muted);
+    font-size: 17px;
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in-view{ opacity:1; transform: translateY(0); }
+
+  /* ---------- Was wir automatisieren ---------- */
+  .pill-badge{
+    display:inline-flex;
+    align-items:center;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(91,79,214,0.14);
+    border: 1px solid rgba(91,79,214,0.32);
+    color: var(--indigo-light);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .offer-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .offer-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .offer-card:hover{
+    border-color: rgba(91,79,214,0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .offer-icon{
+    width:44px; height:44px;
+    border-radius:12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 18px;
+  }
+  .offer-icon svg{ width:21px; height:21px; stroke: var(--indigo-light); }
+  .offer-card h3{ font-size: 17px; margin-bottom: 8px; }
+  .offer-card p{ font-size: 14px; color: var(--text-muted); margin:0; }
+
+  /* ---------- Budget-Rechner CTA ---------- */
+  .budget-teaser{
+    padding: 96px 0;
+    overflow:hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(145deg, #0d0d10, #11101a 55%, #0d0d0f);
+  }
+  .budget-teaser::before{
+    content:"";
+    position:absolute;
+    width:520px;
+    height:380px;
+    right:-160px;
+    top:-140px;
+    border-radius:50%;
+    background: var(--indigo-glow);
+    filter: blur(90px);
+    pointer-events:none;
+  }
+  .budget-teaser-inner{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns: 1fr .8fr;
+    gap:64px;
+    align-items:center;
+  }
+  .budget-teaser h2{
+    max-width:620px;
+    margin-bottom:16px;
+    font-size:clamp(2rem, 4vw, 3.25rem);
+    line-height:1.07;
+  }
+  .budget-teaser-copy > p{
+    max-width:600px;
+    margin:0 0 28px;
+    color:var(--text-muted);
+    font-size:17px;
+  }
+  .budget-teaser-meta{
+    margin-top:17px;
+    color:var(--text-muted);
+    font-size:12.5px;
+  }
+  .budget-preview{
+    padding:26px;
+    border:1px solid rgba(122,111,239,.32);
+    border-radius:20px;
+    background:rgba(19,19,22,.78);
+    box-shadow:0 24px 70px rgba(0,0,0,.35), 0 0 50px rgba(91,79,214,.13);
+    backdrop-filter:blur(14px);
+  }
+  .budget-preview-label{
+    margin-bottom:18px;
+    color:var(--indigo-light);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .budget-preview-row{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:15px 0;
+    border-top:1px solid var(--border);
+  }
+  .budget-preview-icon{
+    display:grid;
+    place-items:center;
+    width:38px;
+    height:38px;
+    flex:0 0 auto;
+    border-radius:11px;
+    background:rgba(91,79,214,.15);
+    color:var(--indigo-light);
+    font-weight:800;
+  }
+  .budget-preview-row strong{ display:block; font-size:14px; }
+  .budget-preview-row span:last-child{ display:block; color:var(--text-muted); font-size:12px; }
+
+  /* ---------- Integrationen ---------- */
+  .integrations-section{ overflow:hidden; }
+  .integrations-inner{
+    display:grid;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 60px;
+    align-items:center;
+  }
+  .integrations-text h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom: 16px; }
+  .integrations-text p{ color: var(--text-muted); font-size: 16px; max-width: 420px; }
+  .integrations-note{ margin-top: 10px; font-size: 14px; color: var(--text-muted); max-width: 420px; }
+  .integrations-grid{
+    display:flex;
+    align-items:flex-start;
+    gap: 16px;
+  }
+  .integration-col{
+    display:flex;
+    flex-direction:column;
+    gap: 16px;
+    flex:1;
+    min-width:0;
+  }
+  .integration-col:nth-child(1){ margin-top:60px; }
+  .integration-col:nth-child(2){ margin-top:0; }
+  .integration-col:nth-child(3){ margin-top:38px; }
+  .integration-col:nth-child(4){ margin-top:100px; }
+  .integration-col:nth-child(5){ margin-top:18px; }
+  .integration-tile{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 10px;
+  }
+  .integration-icon{
+    width:100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    background: linear-gradient(155deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .integration-icon svg{
+    width:34%; height:34%;
+    fill: var(--tile-color, var(--indigo-light));
+  }
+  .integration-icon svg.icon-stroke{
+    width:30%; height:30%;
+    fill:none;
+    stroke: var(--tile-color, var(--indigo-light));
+  }
+  .integration-tile:hover .integration-icon{
+    transform: translateY(-4px);
+    border-color: var(--tile-color, var(--indigo-light));
+    box-shadow: 0 14px 30px -10px var(--tile-color, var(--indigo-glow));
+  }
+  .integration-tile span{
+    font-size: 12.5px;
+    font-weight:600;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Industries ---------- */
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 14px;
+    justify-content:center;
+  }
+  .chip{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding: 14px 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .chip:hover{
+    border-color: rgba(91,79,214,0.5);
+    transform: translateY(-3px);
+  }
+  .chip svg{ width:18px; height:18px; stroke: var(--indigo-light); }
+  .industries-note{
+    text-align:center;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 28px auto 0;
+    font-size: 15px;
+  }
+
+  /* ---------- Social proof ---------- */
+  .proof-grid{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+  }
+  .proof-card{
+    position:relative;
+    background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    padding: 32px 28px 28px;
+    min-height: 200px;
+    display:flex;
+    flex-direction:column;
+    gap: 24px;
+    overflow:hidden;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .proof-card::before{
+    content:"\201C";
+    position:absolute;
+    top:-30px; right:16px;
+    font-size: 140px;
+    line-height:1;
+    font-family: Georgia, "Times New Roman", serif;
+    color: rgba(122,111,239,0.09);
+    pointer-events:none;
+  }
+  .proof-card:hover{
+    transform: translateY(-6px);
+    border-color: rgba(122,111,239,0.4);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 40px rgba(91,79,214,0.12);
+  }
+  .proof-card .quote{
+    position:relative;
+    z-index:1;
+    color:#fff;
+    font-size: 15px;
+    line-height:1.65;
+  }
+  .proof-byline{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-top:auto;
+  }
+  .proof-avatar-ring{
+    width:48px; height:48px;
+    border-radius:50%;
+    padding:2px;
+    flex-shrink:0;
+    background: linear-gradient(135deg, var(--indigo-light), var(--indigo), #C4B8FF, var(--indigo-light));
+    background-size: 200% auto;
+    animation: shine 6s linear infinite;
+  }
+  .proof-avatar{
+    width:100%; height:100%;
+    border-radius:50%;
+    background: var(--bg-card);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 13px;
+    font-weight: 800;
+    color:#fff;
+  }
+  .proof-byline .who{
+    display:block;
+    font-size: 13.5px;
+    font-weight:700;
+    color:#fff;
+  }
+  .proof-byline .who-company{
+    display:block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ---------- Leistungen (Bento) ---------- */
+  .leistungen-eyebrow{ justify-content:center; margin-bottom: 36px; }
+
+  .bento-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "a b c" "a d d";
+    gap: 16px;
+  }
+  .bento-card{
+    position:relative;
+    padding: 24px;
+    border-radius: 20px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.08);
+    display:flex;
+    flex-direction:column;
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .bento-card:hover{ border-color: rgba(122,111,239,0.4); transform: translateY(-3px); }
+  .bento-grid .bento-card:nth-child(1){ grid-area: a; justify-content:space-between; }
+  .bento-grid .bento-card:nth-child(2){ grid-area: b; }
+  .bento-grid .bento-card:nth-child(3){ grid-area: c; }
+  .bento-card-wide{ grid-area: d; flex-direction:row; align-items:center; gap: 16px; }
+  .bento-card-wide .bento-icon{ margin-bottom:0; }
+
+  .bento-icon{
+    width:44px; height:44px;
+    border-radius:12px;
+    background: linear-gradient(135deg, rgba(122,111,239,0.28), rgba(91,79,214,0.08));
+    border: 1px solid rgba(122,111,239,0.25);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 16px;
+    flex-shrink:0;
+  }
+  .bento-icon svg{ width:20px; height:20px; stroke: var(--indigo-light); }
+  .bento-card h3{ font-size:17px; margin-bottom:8px; }
+  .bento-card p{ font-size:13.5px; color: var(--text-muted); margin:0; }
+
+  .bento-meter{ margin-top:22px; }
+  .bento-meter-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight:700;
+  }
+  .bento-meter-bar{
+    height:6px;
+    border-radius:999px;
+    background: rgba(255,255,255,0.08);
+    overflow:hidden;
+    margin-bottom: 8px;
+  }
+  .bento-meter-bar span{
+    display:block;
+    height:100%;
+    border-radius:999px;
+    background: linear-gradient(90deg, var(--indigo-light), var(--indigo));
+    box-shadow: 0 0 12px var(--indigo-glow);
+  }
+  .bento-meter-value{
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--indigo-light), #C4B8FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bento-live{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4ADE80;
+  }
+
+  @media (max-width: 760px){
+    .bento-grid{ grid-template-columns: 1fr; grid-template-areas: "a" "b" "c" "d"; }
+    .bento-card-wide{ flex-direction:column; align-items:flex-start; }
+  }
+
+  /* ---------- Team ---------- */
+  .team-spectacular{ position:relative; overflow:hidden; }
+  .team-spectacular .hero-bg .blob-1{ top:-180px; left:10%; }
+  .team-spectacular .hero-bg .blob-2{ top:auto; bottom:-200px; right:6%; left:auto; }
+
+  .team-grid{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap: 28px;
+  }
+  .team-card{
+    position:relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    padding: 40px 32px;
+    width: 260px;
+    text-align:center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .team-index{
+    position:absolute;
+    top:18px; left:18px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.08em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .team-card:hover{
+    border-color: var(--indigo-light);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45), 0 0 50px rgba(91,79,214,0.3);
+  }
+  .team-avatar-ring{
+    width: 104px; height:104px;
+    border-radius:50%;
+    padding: 4px;
+    margin: 0 auto 22px;
+    background: linear-gradient(120deg, var(--indigo-light), #C4B8FF, var(--indigo), var(--indigo-light));
+    background-size: 220% 220%;
+    animation: shine 6s linear infinite;
+    box-shadow: 0 0 44px var(--indigo-glow);
+  }
+  .team-avatar{
+    width: 100%; height:100%;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--indigo-light), var(--indigo));
+    display:flex; align-items:center; justify-content:center;
+    font-size: 26px; font-weight: 800; color:#fff;
+    box-shadow: inset 0 0 0 3px var(--bg);
+  }
+  .team-avatar-photo{
+    object-fit: cover;
+    background: none;
+  }
+  .team-card h3{ font-size:18px; margin-bottom: 8px; }
+  .team-role{
+    display:inline-block;
+    padding: 5px 14px;
+    border-radius:999px;
+    background: rgba(91,79,214,0.12);
+    border: 1px solid rgba(91,79,214,0.32);
+    font-size:12.5px;
+    font-weight:700;
+    color: var(--indigo-light);
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-list{
+    max-width: 780px;
+    margin: 0 auto;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+  .faq-item{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .faq-question{
+    width:100%;
+    background:none;
+    border:none;
+    color:#fff;
+    text-align:left;
+    padding: 20px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 16px;
+    cursor:pointer;
+    font-family: inherit;
+  }
+  .faq-question .icon{
+    flex-shrink:0;
+    width: 22px; height:22px;
+    border-radius:50%;
+    border: 1px solid var(--indigo);
+    display:flex; align-items:center; justify-content:center;
+    transition: transform .3s ease;
+  }
+  .faq-question .icon svg{ width:11px; height:11px; stroke: var(--indigo-light); }
+  .faq-item.open .faq-question .icon{ transform: rotate(45deg); }
+
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height .35s ease, padding .35s ease;
+    padding: 0 24px;
+  }
+  .faq-item.open .faq-answer{
+    max-height: 400px;
+    padding: 0 24px 22px;
+  }
+  .faq-answer p{
+    margin:0;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background: linear-gradient(180deg, var(--bg-alt), #111018 60%, var(--bg-alt));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align:center;
+    padding: 100px 0;
+    position: relative;
+    overflow:hidden;
+  }
+  .final-cta::before{
+    content:"";
+    position:absolute;
+    bottom: -220px;
+    left:50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(circle, var(--indigo-glow) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+  .final-cta-inner{ position:relative; z-index:1; }
+  .final-cta h2{
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    max-width: 700px;
+    margin: 0 auto 18px;
+  }
+  .final-cta p{
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+  .final-cta .btn{ font-size: 17px; padding: 18px 36px; }
+  .final-cta-meta{
+    margin-top: 20px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding: 56px 0 32px;
+  }
+  .footer-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap:wrap;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .footer-logo{ display:flex; align-items:center; gap:10px; }
+  .footer-logo .logo-mark{ width:32px; height:32px; font-size:14px; }
+  .footer-links{
+    display:flex;
+    gap: 40px;
+    flex-wrap:wrap;
+  }
+  .footer-col h4{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .footer-col a{
+    display:block;
+    font-size: 14.5px;
+    color: #d6d6db;
+    margin-bottom: 10px;
+    transition: color .2s ease;
+  }
+  .footer-col a:hover{ color: var(--indigo-light); }
+  .footer-bottom{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .hero-inner{ grid-template-columns: 1fr; gap: 48px; }
+    .proof-grid{ grid-template-columns: 1fr; }
+    .offer-grid{ grid-template-columns: repeat(2, 1fr); }
+    .hero-visual{ max-width: 480px; margin: 0 auto; }
+    .integrations-inner{ grid-template-columns: 1fr; gap: 36px; }
+    .budget-teaser-inner{ grid-template-columns:1fr; gap:38px; }
+    .budget-preview{ max-width:620px; }
+    .integrations-grid{ display:grid; grid-template-columns: repeat(4, 1fr); }
+    .integration-col{ display:contents; }
+  }
+
+  @media (max-width: 760px){
+    nav.main-nav{
+      position: fixed;
+      top: 70px;
+      left: 0; right:0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 8px 24px 20px;
+      transform: translateY(-130%);
+      opacity:0;
+      transition: transform .3s ease, opacity .3s ease;
+      z-index: 90;
+    }
+    nav.main-nav.open{ transform: translateY(0); opacity:1; }
+    nav.main-nav a.nav-link{ padding: 12px 0; width:100%; border-bottom: 1px solid var(--border); }
+    .nav-actions .btn-primary.js-booking-link{ display:none; }
+    nav.main-nav .mobile-cta{ display:flex; margin-top:16px; width:100%; }
+    .menu-toggle{ display:block; }
+
+    .offer-grid{ grid-template-columns: 1fr; }
+    .integrations-grid{ grid-template-columns: repeat(3, 1fr); }
+    .section{ padding: 64px 0; }
+    .hero{ padding: 56px 0 56px; }
+    .hero-ctas{ flex-direction:column; align-items:flex-start; }
+    .footer-top{ flex-direction: column; }
+    .budget-teaser{ padding:70px 0; }
+    .budget-teaser .btn{ width:100%; }
+
+    .hero-visual{ margin: 34px 0 0; }
+    .float-badge{ padding: 8px 14px; font-size: 12px; }
+    .badge-top-left{ top:-30px; left: 8px; }
+    .badge-bottom-right{ bottom:-30px; right: 8px; }
+  }
+
+  /* ---------- Cookie banner ---------- */
+  .cookie-banner{
+    position: fixed;
+    left: 20px; right: 20px; bottom: 20px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: rgba(19,19,22,0.97);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 26px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    backdrop-filter: blur(16px);
+    z-index: 200;
+    display: none;
+  }
+  .cookie-banner.visible{ display:block; }
+  .cookie-banner-text strong{ display:block; font-size:15px; margin-bottom:6px; }
+  .cookie-banner-text p{ font-size:13.5px; color: var(--text-muted); margin:0; }
+  .cookie-banner-text a{ color: var(--indigo-light); text-decoration: underline; }
+  .cookie-banner-actions{
+    display:flex;
+    gap:12px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .cookie-banner-actions .btn{ flex:1; min-width:150px; }
+  @media (max-width:600px){
+    .cookie-banner{ left:12px; right:12px; bottom:12px; padding:18px; }
+  }
+
+  /* ---------- Custom cursor ---------- */
+  html.custom-cursor-active,
+  html.custom-cursor-active *{
+    cursor: none !important;
+  }
+  .cursor-dot,
+  .cursor-ring{
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity .3s ease;
+    will-change: transform;
+  }
+  .cursor-dot{
+    width: 8px;
+    height: 8px;
+    background: var(--indigo-light);
+    box-shadow: 0 0 14px var(--indigo-light);
+  }
+  .cursor-ring{
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid rgba(122,111,239,0.55);
+    transition: opacity .3s ease, width .25s ease, height .25s ease, border-color .25s ease, background-color .25s ease;
+  }
+  .cursor-ring.hover{
+    width: 56px;
+    height: 56px;
+    background: rgba(91,79,214,0.15);
+    border-color: var(--indigo-light);
+  }
+  .cursor-ring.click{ width: 28px; height: 28px; }
+
+  @media (pointer: coarse){
+    .cursor-dot, .cursor-ring{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="header-inner wrap">
+    <a href="index.html" class="logo" aria-label="LiraTech Startseite">
+      <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="logoTGradientHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:var(--indigo-light)"/>
+            <stop offset="100%" style="stop-color:var(--indigo)"/>
+          </linearGradient>
+        </defs>
+        <rect x="30" y="40" width="28" height="120" rx="5" fill="#fff"/>
+        <rect x="30" y="134" width="64" height="26" rx="5" fill="#fff"/>
+        <rect x="108" y="40" width="86" height="26" rx="5" fill="url(#logoTGradientHeader)"/>
+        <rect x="137" y="66" width="28" height="94" rx="5" fill="url(#logoTGradientHeader)"/>
+      </svg>
+      <span class="logo-text">Lira<span>Tech</span></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a class="nav-link" href="#integrationen">Integrationen</a>
+      <a class="nav-link" href="#leistungen">Leistungen</a>
+      <a class="nav-link" href="automation-rechner.html">Budget-Rechner</a>
+      <a class="nav-link" href="#team">Team</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+      <a href="#booking-link" class="btn btn-primary btn-small mobile-cta js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#booking-link" class="btn btn-primary btn-small js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+        <svg id="menuIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menuIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <svg class="hero-workflow-bg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="wf-lines" stroke="#7A6FEF" stroke-width="1.2" fill="none">
+        <path d="M120,120 L340,60"/>
+        <path d="M340,60 L560,180"/>
+        <path d="M560,180 L780,90"/>
+        <path d="M780,90 L980,220"/>
+        <path d="M120,120 L200,380"/>
+        <path d="M340,60 L450,420"/>
+        <path d="M560,180 L700,380"/>
+        <path d="M780,90 L950,450"/>
+        <path d="M200,380 L450,420"/>
+        <path d="M450,420 L700,380"/>
+        <path d="M700,380 L950,450"/>
+        <path d="M200,380 L300,580"/>
+        <path d="M450,420 L650,560"/>
+        <path d="M700,380 L900,600"/>
+        <path d="M300,580 L650,560"/>
+        <path d="M650,560 L900,600"/>
+      </g>
+      <g class="wf-nodes" fill="#7A6FEF">
+        <circle class="wf-node" cx="120" cy="120" r="4" style="animation-delay:0s"/>
+        <circle class="wf-node" cx="340" cy="60" r="4" style="animation-delay:.3s"/>
+        <circle class="wf-node" cx="560" cy="180" r="4" style="animation-delay:.6s"/>
+        <circle class="wf-node" cx="780" cy="90" r="4" style="animation-delay:.9s"/>
+        <circle class="wf-node" cx="980" cy="220" r="4" style="animation-delay:1.2s"/>
+        <circle class="wf-node" cx="200" cy="380" r="4" style="animation-delay:1.5s"/>
+        <circle class="wf-node" cx="450" cy="420" r="4" style="animation-delay:1.8s"/>
+        <circle class="wf-node" cx="700" cy="380" r="4" style="animation-delay:2.1s"/>
+        <circle class="wf-node" cx="950" cy="450" r="4" style="animation-delay:2.4s"/>
+        <circle class="wf-node" cx="300" cy="580" r="4" style="animation-delay:2.7s"/>
+        <circle class="wf-node" cx="650" cy="560" r="4" style="animation-delay:3s"/>
+        <circle class="wf-node" cx="900" cy="600" r="4" style="animation-delay:3.3s"/>
+      </g>
+      <circle r="3" fill="#fff" class="wf-signal">
+        <animateMotion dur="6s" repeatCount="indefinite" path="M120,120 L340,60 L560,180 L780,90 L980,220"/>
+      </circle>
+      <circle r="3" fill="#fff" class="wf-signal">
+        <animateMotion dur="7s" repeatCount="indefinite" path="M200,380 L450,420 L700,380 L950,450"/>
+      </circle>
+      <circle r="3" fill="#fff" class="wf-signal">
+        <animateMotion dur="8s" repeatCount="indefinite" path="M300,580 L650,560 L900,600"/>
+      </circle>
+    </svg>
+
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow hero-anim hero-anim-1">Prozessautomatisierung für KMU</div>
+        <h1 class="hero-anim hero-anim-2">Wir automatisieren<br><span class="rotating-word" id="rotatingWord">Prozesse</span><span class="type-cursor">|</span></h1>
+        <p class="subhead hero-anim hero-anim-3">Wir automatisieren, digitalisieren &amp; systematisieren Ihr Unternehmen mit maßgeschneiderten Prozessverbesserungen.</p>
+
+        <div class="hero-ctas hero-anim hero-anim-4">
+          <a href="#booking-link" class="btn btn-primary pulse js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+          <a href="#leistungen" class="btn btn-secondary">Automatisierungen entdecken</a>
+        </div>
+
+        <div class="hero-trust hero-anim hero-anim-5">
+          <strong>24/7</strong> im Einsatz &nbsp;·&nbsp; <strong>EU AI Act konform</strong>
+        </div>
+      </div>
+
+      <div class="hero-visual hero-anim hero-anim-6">
+        <div class="orb-card-wrap">
+          <div class="float-badge badge-top-left"><span class="badge-dot"></span> Läuft automatisch</div>
+
+          <div class="orb-card">
+            <div class="orb-card-header">
+              <div class="call-status"><span class="dot"></span> Automatisierung aktiv</div>
+            </div>
+
+            <div class="flow-pipeline" id="flowPipeline">
+              <div class="flow-step">
+                <div class="flow-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+                <div class="flow-step-text">
+                  <strong>Anfrage geht ein</strong>
+                  <span>Telefon, E-Mail oder Formular</span>
+                </div>
+                <div class="flow-step-check">&#10003;</div>
+              </div>
+
+              <div class="flow-connector"></div>
+
+              <div class="flow-step">
+                <div class="flow-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
+                <div class="flow-step-text">
+                  <strong>Automatisch verarbeitet</strong>
+                  <span>System erkennt Anliegen &amp; Daten</span>
+                </div>
+                <div class="flow-step-check">&#10003;</div>
+              </div>
+
+              <div class="flow-connector"></div>
+
+              <div class="flow-step">
+                <div class="flow-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg></div>
+                <div class="flow-step-text">
+                  <strong>Aktion wird ausgeführt</strong>
+                  <span>Termin gebucht, CRM aktualisiert</span>
+                </div>
+                <div class="flow-step-check">&#10003;</div>
+              </div>
+
+              <div class="flow-connector"></div>
+
+              <div class="flow-step">
+                <div class="flow-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+                <div class="flow-step-text">
+                  <strong>Team wird informiert</strong>
+                  <span>Keine manuelle Nacharbeit nötig</span>
+                </div>
+                <div class="flow-step-check">&#10003;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-badge badge-bottom-right">⚡ In Sekunden erledigt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARTNER-LOGOS ================= -->
+  <section class="partners-strip">
+    <p class="partners-label">Bereits erfolgreich zusammengearbeitet mit</p>
+    <div class="partners-track-wrap">
+      <div class="partners-track">
+        <div class="partner-logo"><img src="assets/logos/gehrung.png" alt="Gehrung Gesellschaft für Grundbesitz und Vermögensverwaltung mbH"></div>
+        <div class="partner-logo"><img src="assets/logos/kasten-mann.png" alt="Kasten-Mann Real Estate Advisors"></div>
+        <div class="partner-logo"><img src="assets/logos/scholzcon.png" alt="ScholzCon"></div>
+        <div class="partner-logo"><img src="assets/logos/bfe.png" alt="brand for events Potsdam"></div>
+        <div class="partner-logo partner-logo-fox">
+          <svg viewBox="-1 -1 26 15" xmlns="http://www.w3.org/2000/svg"><path fill="#A93F18" d="M22.28,11.16 C22.79,11.49 22.84,11.95 22.52,12.04 C22.21,12.13 21.82,11.89 21.65,11.69 C21.48,11.49 21.18,11.24 20.74,10.96 C20.29,10.68 18.62,10.26 18.11,10.14 C17.48,10.0 17.35,9.82 17.15,9.6 C16.96,9.38 16.75,9.35 16.75,9.35 C15.55,9.27 14.42,8.66 13.7,8.3 C12.99,7.94 12.47,7.88 12.11,7.96 C11.75,8.05 11.01,8.57 11.01,8.57 C10.33,9.01 9.89,9.38 8.92,9.54 C7.95,9.7 6.88,9.48 6.55,9.41 C6.22,9.35 6.09,9.47 5.87,9.59 C5.65,9.7 4.78,10.39 4.41,10.63 C4.05,10.88 3.68,11.14 3.41,11.01 C3.13,10.87 3.24,10.57 3.43,10.41 C3.63,10.26 3.8,10.23 4.0,10.16 C4.2,10.09 5.02,9.2 5.02,9.2 C4.48,9.12 4.2,9.31 3.83,9.51 C3.45,9.71 2.89,10.11 2.6,10.25 C2.31,10.39 1.57,10.57 1.66,10.14 C1.74,9.71 2.13,9.75 2.46,9.57 C2.79,9.4 3.58,8.85 3.98,8.56 C4.38,8.26 4.59,8.15 4.79,8.11 C4.99,8.07 5.49,8.15 5.49,8.15 C6.46,8.26 7.03,7.85 7.5,7.0 C7.96,6.14 8.43,5.39 8.43,5.39 C8.17,5.3 7.7,5.7 7.17,6.03 C6.64,6.36 5.56,7.24 3.85,7.41 C2.13,7.57 1.06,6.99 0.53,6.16 C0.0,5.33 0.07,4.37 0.14,4.26 C0.2,4.15 0.31,4.28 0.31,4.28 C2.21,5.5 4.54,4.63 4.54,4.63 C7.96,3.43 9.64,4.36 9.64,4.36 C9.64,4.36 11.75,3.32 14.36,4.1 C14.36,4.1 15.51,4.43 16.27,4.59 C17.03,4.74 17.78,4.83 18.11,4.6 C18.11,4.6 18.29,4.51 18.19,4.38 C18.1,4.25 17.77,4.23 17.37,4.19 C16.96,4.14 16.47,3.9 16.29,3.55 C16.1,3.21 16.26,3.05 16.47,2.99 C16.67,2.94 17.42,2.72 17.66,2.44 C17.91,2.15 18.14,1.82 18.51,1.58 C18.51,1.58 18.56,1.35 18.51,1.03 C18.45,0.71 18.42,0.39 18.5,0.34 C18.58,0.29 19.22,0.72 19.53,1.17 C19.53,1.17 19.64,1.15 19.63,0.62 C19.61,0.09 19.66,0.0 19.85,0.09 C20.03,0.17 20.78,0.8 21.1,1.82 C21.1,1.82 21.83,2.28 22.12,3.75 C22.12,3.75 22.74,6.38 20.37,8.24 C20.37,8.24 20.27,8.35 20.43,8.42 C20.59,8.49 20.56,8.62 21.44,8.81 C22.49,9.04 23.0,9.45 23.37,9.72 C23.73,9.99 24.0,10.08 23.95,10.45 C23.9,10.81 23.37,10.64 23.0,10.36 C22.64,10.08 22.45,9.79 21.83,9.66 C21.21,9.52 19.38,9.42 19.38,9.42 C19.38,9.42 20.68,10.02 21.22,10.41 C21.75,10.8 22.28,11.16 22.28,11.16 Z"/></svg>
+          <span>Fuchs &amp; Medien</span>
+        </div>
+
+        <div class="partner-logo" aria-hidden="true"><img src="assets/logos/gehrung.png" alt=""></div>
+        <div class="partner-logo" aria-hidden="true"><img src="assets/logos/kasten-mann.png" alt=""></div>
+        <div class="partner-logo" aria-hidden="true"><img src="assets/logos/scholzcon.png" alt=""></div>
+        <div class="partner-logo" aria-hidden="true"><img src="assets/logos/bfe.png" alt=""></div>
+        <div class="partner-logo partner-logo-fox" aria-hidden="true">
+          <svg viewBox="-1 -1 26 15" xmlns="http://www.w3.org/2000/svg"><path fill="#A93F18" d="M22.28,11.16 C22.79,11.49 22.84,11.95 22.52,12.04 C22.21,12.13 21.82,11.89 21.65,11.69 C21.48,11.49 21.18,11.24 20.74,10.96 C20.29,10.68 18.62,10.26 18.11,10.14 C17.48,10.0 17.35,9.82 17.15,9.6 C16.96,9.38 16.75,9.35 16.75,9.35 C15.55,9.27 14.42,8.66 13.7,8.3 C12.99,7.94 12.47,7.88 12.11,7.96 C11.75,8.05 11.01,8.57 11.01,8.57 C10.33,9.01 9.89,9.38 8.92,9.54 C7.95,9.7 6.88,9.48 6.55,9.41 C6.22,9.35 6.09,9.47 5.87,9.59 C5.65,9.7 4.78,10.39 4.41,10.63 C4.05,10.88 3.68,11.14 3.41,11.01 C3.13,10.87 3.24,10.57 3.43,10.41 C3.63,10.26 3.8,10.23 4.0,10.16 C4.2,10.09 5.02,9.2 5.02,9.2 C4.48,9.12 4.2,9.31 3.83,9.51 C3.45,9.71 2.89,10.11 2.6,10.25 C2.31,10.39 1.57,10.57 1.66,10.14 C1.74,9.71 2.13,9.75 2.46,9.57 C2.79,9.4 3.58,8.85 3.98,8.56 C4.38,8.26 4.59,8.15 4.79,8.11 C4.99,8.07 5.49,8.15 5.49,8.15 C6.46,8.26 7.03,7.85 7.5,7.0 C7.96,6.14 8.43,5.39 8.43,5.39 C8.17,5.3 7.7,5.7 7.17,6.03 C6.64,6.36 5.56,7.24 3.85,7.41 C2.13,7.57 1.06,6.99 0.53,6.16 C0.0,5.33 0.07,4.37 0.14,4.26 C0.2,4.15 0.31,4.28 0.31,4.28 C2.21,5.5 4.54,4.63 4.54,4.63 C7.96,3.43 9.64,4.36 9.64,4.36 C9.64,4.36 11.75,3.32 14.36,4.1 C14.36,4.1 15.51,4.43 16.27,4.59 C17.03,4.74 17.78,4.83 18.11,4.6 C18.11,4.6 18.29,4.51 18.19,4.38 C18.1,4.25 17.77,4.23 17.37,4.19 C16.96,4.14 16.47,3.9 16.29,3.55 C16.1,3.21 16.26,3.05 16.47,2.99 C16.67,2.94 17.42,2.72 17.66,2.44 C17.91,2.15 18.14,1.82 18.51,1.58 C18.51,1.58 18.56,1.35 18.51,1.03 C18.45,0.71 18.42,0.39 18.5,0.34 C18.58,0.29 19.22,0.72 19.53,1.17 C19.53,1.17 19.64,1.15 19.63,0.62 C19.61,0.09 19.66,0.0 19.85,0.09 C20.03,0.17 20.78,0.8 21.1,1.82 C21.1,1.82 21.83,2.28 22.12,3.75 C22.12,3.75 22.74,6.38 20.37,8.24 C20.37,8.24 20.27,8.35 20.43,8.42 C20.59,8.49 20.56,8.62 21.44,8.81 C22.49,9.04 23.0,9.45 23.37,9.72 C23.73,9.99 24.0,10.08 23.95,10.45 C23.9,10.81 23.37,10.64 23.0,10.36 C22.64,10.08 22.45,9.79 21.83,9.66 C21.21,9.52 19.38,9.42 19.38,9.42 C19.38,9.42 20.68,10.02 21.22,10.41 C21.75,10.8 22.28,11.16 22.28,11.16 Z"/></svg>
+          <span>Fuchs &amp; Medien</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WAS WIR AUTOMATISIEREN ================= -->
+  <section class="section offer-showcase">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="pill-badge">Was wir automatisieren</span>
+        <h2>Automatisierungen für jeden Bereich Ihres Unternehmens</h2>
+        <p>Wir identifizieren Ihre größten Zeitfresser und entwickeln intelligente Automatisierungen, die diese vollständig eliminieren, branchenübergreifend.</p>
+      </div>
+
+      <div class="offer-grid reveal">
+        <div class="offer-card">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+          <h3>Rechnungen automatisch ablegen</h3>
+          <p>Rechnungen kommen per E-Mail, PDF oder Post rein. Unsere KI liest sie aus, ordnet sie zu und legt sie automatisch im richtigen System ab.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-4"/><path d="m9 14 2 2 4-4"/></svg></div>
+          <h3>Digitale Genehmigungsprozesse</h3>
+          <p>Anträge, Freigaben und Unterschriften, die sonst tagelang im Postfach hängen, laufen automatisch durch alle Instanzen.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="17" y1="11" x2="23" y2="11"/></svg></div>
+          <h3>Lead-Generierung</h3>
+          <p>Neue Anfragen werden automatisch erfasst, qualifiziert und direkt ins CRM übertragen, bereit für den ersten Kontakt.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3>Mitarbeiter-Onboarding</h3>
+          <p>Vom Vertrag bis zum ersten Arbeitstag: Zugänge, Dokumente und Aufgaben werden automatisch vorbereitet.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+          <h3>Support-Anfragen bearbeiten</h3>
+          <p>Ob E-Mail, Chat oder Telefon: Anfragen werden automatisch erkannt, beantwortet oder an die richtige Person weitergeleitet.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg></div>
+          <h3>Ihr individueller Prozess</h3>
+          <p>Sie haben einen Workflow, der Sie Zeit kostet, aber keine App löst ihn? Genau dafür bauen wir Ihre eigene Automatisierung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTEGRATIONEN ================= -->
+  <section class="section integrations-section" id="integrationen" style="background: var(--bg-alt);">
+    <div class="wrap integrations-inner">
+      <div class="integrations-text reveal">
+        <div class="eyebrow">Verbindungen</div>
+        <h2>Verbunden mit den Systemen, die Sie bereits nutzen</h2>
+        <p>Unsere Automatisierungen fügen sich nahtlos in Ihre bestehende Systemlandschaft ein, ganz ohne Systemwechsel und ohne doppelte Datenpflege.</p>
+        <p class="integrations-note">Ist Ihre Software nicht dabei? Kein Problem, sprechen Sie uns an.</p>
+      </div>
+
+      <div class="integrations-grid reveal">
+        <div class="integration-col">
+          <div class="integration-tile" style="--tile-color:#FF7A59">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.978v-.067A2.2 2.2 0 0017.238.845h-.067a2.2 2.2 0 00-2.193 2.193v.067a2.196 2.196 0 001.252 1.973l.013.006v2.852a6.22 6.22 0 00-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 104.3 4.656l-.012.006 7.697 5.991a6.176 6.176 0 00-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 00-.58-.095h-.002a2.033 2.033 0 102.033 2.033 1.978 1.978 0 00-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 104.782-11.134l-.036-.005zm-.964 9.378a3.206 3.206 0 113.215-3.207v.002a3.206 3.206 0 01-3.207 3.207z"/></svg></div>
+            <span>HubSpot</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#00857C">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 .165v16.9174h23.9147V.1651Zm.017 18.1842v5.4857h1.9809c1.4754 0 2.7429-1.1832 2.7429-2.7005-.042-1.686-1.0982-2.7852-2.5736-2.7852zm6.62 0-2.1079 5.4857H5.706l1.6422-4.3428 1.3546 3.454h-1.524v.8888h3.0392l-2.1502-5.4857Zm2.6498 0v.9312h1.7778v4.5545h1.219v-4.5545h1.727v-.9312zm5.1894 0v5.4857h3.7926v-.8889h-2.6159v-1.5153h2.3196v-.9313h-2.3196v-1.219h2.4889v-.9312zm3.962 0 2.1502 5.4857h1.3037L24 18.3492h-2.9037v.9312h1.3884l-1.2699 3.327-1.5577-4.2582zm-17.2869.9312h.9313c.9271 0 1.5576.6735 1.5153 1.8117-.042 1.1804-.8425 1.8116-1.8116 1.8116h-.635Z"/></svg></div>
+            <span>DATEV</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#FFFFFF">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg></div>
+            <span>Notion</span>
+          </div>
+        </div>
+
+        <div class="integration-col">
+          <div class="integration-tile" style="--tile-color:#00A1E0">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.006 5.415a4.195 4.195 0 013.045-1.306c1.56 0 2.954.9 3.69 2.205.63-.3 1.35-.45 2.1-.45 2.85 0 5.159 2.34 5.159 5.22s-2.31 5.22-5.176 5.22c-.345 0-.69-.044-1.02-.104a3.75 3.75 0 01-3.3 1.95c-.6 0-1.155-.15-1.65-.375A4.314 4.314 0 018.88 20.4a4.302 4.302 0 01-4.05-2.82c-.27.062-.54.076-.825.076-2.204 0-4.005-1.8-4.005-4.05 0-1.5.811-2.805 2.01-3.51-.255-.57-.39-1.2-.39-1.846 0-2.58 2.1-4.65 4.65-4.65 1.53 0 2.85.705 3.72 1.8"/></svg></div>
+            <span>Salesforce</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#0FAAFF">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 6.064v11.872h12.13L24 6.064zm3.264 2.208h.005c.863.001 1.915.245 2.676.633l-.82 1.43c-.835-.404-1.255-.442-1.73-.467-.708-.038-1.064.215-1.069.488-.007.332.669.633 1.305.838.964.306 2.19.715 2.377 1.9L7.77 8.437h2.046l2.064 5.576-.007-5.575h2.37c2.257 0 3.318.764 3.318 2.519 0 1.575-1.09 2.514-2.936 2.514h-.763l-.01 2.094-3.588-.003-.25-.908c-.37.122-.787.189-1.23.189-.456 0-.885-.071-1.263-.2l-.358.919-2 .006.09-.462c-.029.025-.057.05-.087.074-.535.43-1.208.629-2.037.644l-.213.002a5.075 5.075 0 0 1-2.581-.675l.73-1.448c.79.467 1.286.572 1.956.558.347-.007.598-.07.761-.239a.557.557 0 0 0 .156-.369c.007-.376-.53-.553-1.185-.756-.531-.164-1.135-.389-1.606-.735-.559-.41-.825-.924-.812-1.65a1.99 1.99 0 0 1 .566-1.377c.519-.537 1.357-.863 2.363-.863zm10.597 1.67v1.904h.521c.694 0 1.247-.23 1.248-.964 0-.709-.554-.94-1.248-.94zm-5.087.767l-.748 2.362c.223.085.481.133.757.133.268 0 .52-.047.742-.126l-.736-2.37z"/></svg></div>
+            <span>SAP</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#4A154B">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg></div>
+            <span>Slack</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#635BFF">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"/></svg></div>
+            <span>Stripe</span>
+          </div>
+        </div>
+
+        <div class="integration-col">
+          <div class="integration-tile" style="--tile-color:#FF6D5A">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg></div>
+            <span>n8n</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#95BF47">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg></div>
+            <span>Shopify</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#25D366">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div>
+            <span>WhatsApp</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#4285F4">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg></div>
+            <span>Google Calendar</span>
+          </div>
+        </div>
+
+        <div class="integration-col">
+          <div class="integration-tile" style="--tile-color:#0EA5E9">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-stroke"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><line x1="9" y1="9" x2="10" y2="9"/><line x1="9" y1="13" x2="10" y2="13"/><line x1="9" y1="17" x2="10" y2="17"/><line x1="14" y1="9" x2="15" y2="9"/><line x1="14" y1="13" x2="15" y2="13"/><line x1="14" y1="17" x2="15" y2="17"/></svg></div>
+            <span>casavi</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#0072C6">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46 0-.8-.33-.32-.33-.32-.8V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h6.5V2.55q0-.44.3-.75.3-.3.75-.3h12.9q.44 0 .75.3.3.3.3.75V10.85l1.24.72h.01q.1.07.18.18.07.12.07.25zm-6-8.25v3h3v-3zm0 4.5v3h3v-3zm0 4.5v1.83l3.05-1.83zm-5.25-9v3h3.75v-3zm0 4.5v3h3.75v-3zm0 4.5v2.03l2.41 1.5 1.34-.8v-2.73zM9 3.75V6h2l.13.01.12.04v-2.3zM5.98 15.98q.9 0 1.6-.3.7-.32 1.19-.86.48-.55.73-1.28.25-.74.25-1.61 0-.83-.25-1.55-.24-.71-.71-1.24t-1.15-.83q-.68-.3-1.55-.3-.92 0-1.64.3-.71.3-1.2.85-.5.54-.75 1.3-.25.74-.25 1.63 0 .85.26 1.56.26.72.74 1.23.48.52 1.17.81.69.3 1.56.3zM7.5 21h12.39L12 16.08V17q0 .41-.3.7-.29.3-.7.3H7.5zm15-.13v-7.24l-5.9 3.54Z"/></svg></div>
+            <span>Outlook</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#217346">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23 1.5q.41 0 .7.3.3.29.3.7v19q0 .41-.3.7-.29.3-.7.3H7q-.41 0-.7-.3-.3-.29-.3-.7V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7.29-.3.7-.3zM6 13.28l1.42 2.66h2.14l-2.38-3.87 2.34-3.8H7.46l-1.3 2.4-.05.08-.04.09-.64-1.28-.66-1.29H2.59l2.27 3.82-2.48 3.85h2.16zM14.25 21v-3H7.5v3zm0-4.5v-3.75H12v3.75zm0-5.25V7.5H12v3.75zm0-5.25V3H7.5v3zm8.25 15v-3h-6.75v3zm0-4.5v-3.75h-6.75v3.75zm0-5.25V7.5h-6.75v3.75zm0-5.25V3h-6.75v3Z"/></svg></div>
+            <span>Excel</span>
+          </div>
+        </div>
+
+        <div class="integration-col">
+          <div class="integration-tile" style="--tile-color:#0078D4">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.453 9.95q.961.058 1.787.468.826.41 1.442 1.066.615.657.966 1.512.352.856.352 1.816 0 1.008-.387 1.893-.386.885-1.049 1.547-.662.662-1.546 1.049-.885.387-1.893.387H6q-1.242 0-2.332-.475-1.09-.475-1.904-1.29-.815-.814-1.29-1.903Q0 14.93 0 13.688q0-.985.31-1.887.311-.903.862-1.658.55-.756 1.324-1.325.774-.568 1.711-.861.434-.129.85-.187.416-.06.861-.082h.012q.515-.786 1.207-1.413.691-.627 1.5-1.066.808-.44 1.705-.668.896-.229 1.845-.229 1.278 0 2.456.417 1.177.416 2.144 1.16.967.744 1.658 1.78.692 1.038 1.008 2.28zm-7.265-4.137q-1.325 0-2.52.544-1.195.545-2.04 1.565.446.117.85.299.405.181.792.416l4.78 2.86 2.731-1.15q.27-.117.545-.204.276-.088.58-.147-.293-.937-.855-1.705-.563-.768-1.319-1.318-.755-.551-1.658-.856-.902-.304-1.886-.304zM2.414 16.395l9.914-4.184-3.832-2.297q-.586-.351-1.23-.539-.645-.188-1.325-.188-.914 0-1.722.364-.809.363-1.412.978-.604.616-.955 1.436-.352.82-.352 1.723 0 .703.234 1.423.235.721.68 1.284zm16.711 1.793q.563 0 1.078-.176.516-.176.961-.516l-7.23-4.324-10.301 4.336q.527.328 1.13.504.604.175 1.237.175zm3.012-1.852q.363-.727.363-1.523 0-.774-.293-1.407t-.791-1.072q-.498-.44-1.166-.68-.668-.24-1.406-.24-.422 0-.838.1t-.815.252q-.398.152-.785.334-.386.181-.761.345Z"/></svg></div>
+            <span>OneDrive</span>
+          </div>
+          <div class="integration-tile" style="--tile-color:#2D9CDB">
+            <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-stroke"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><line x1="9" y1="9" x2="10" y2="9"/><line x1="9" y1="13" x2="10" y2="13"/><line x1="9" y1="17" x2="10" y2="17"/><line x1="14" y1="9" x2="15" y2="9"/><line x1="14" y1="13" x2="15" y2="13"/><line x1="14" y1="17" x2="15" y2="17"/></svg></div>
+            <span>Immoware24</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LEISTUNGEN ================= -->
+  <section class="section leistungen-bento" id="leistungen" style="background: var(--bg-alt);">
+    <div class="wrap">
+      <div class="eyebrow leistungen-eyebrow reveal">Leistungen</div>
+
+      <div class="bento-grid reveal">
+        <div class="bento-card">
+          <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
+          <h3>Automatisierung</h3>
+          <p>Wiederkehrende Prozesse werden vollständig automatisiert, von Telefon bis CRM.</p>
+          <div class="bento-meter">
+            <div class="bento-meter-label">Effizienzsteigerung</div>
+            <div class="bento-meter-bar"><span style="width:78%"></span></div>
+            <div class="bento-meter-value">+78&nbsp;%</div>
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h3>IT-Beratung</h3>
+          <p>Wir analysieren Ihre Prozesse und zeigen konkretes Automatisierungspotenzial auf.</p>
+        </div>
+
+        <div class="bento-card">
+          <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+          <h3>Workshops</h3>
+          <p>Ihr Team lernt, wie KI im Alltag richtig eingesetzt wird, inklusive effektivem Prompting.</p>
+        </div>
+
+        <div class="bento-card bento-card-wide">
+          <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div>
+            <h3>KI-Telefonassistenten</h3>
+            <p>Ein eigener digitaler Mitarbeiter am Telefon, rund um die Uhr im Einsatz.</p>
+            <div class="bento-live"><span class="badge-dot"></span> Live testbar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BUDGET-RECHNER ================= -->
+  <section class="budget-teaser">
+    <div class="wrap budget-teaser-inner">
+      <div class="budget-teaser-copy reveal">
+        <div class="eyebrow">Automation Budget Calculator</div>
+        <h2>Was kostet Ihre Automatisierung?</h2>
+        <p>Konfigurieren Sie Ihren Prozess und erhalten Sie direkt eine erste Budgetspanne sowie eine passende Empfehlung für den laufenden Betrieb.</p>
+        <a href="automation-rechner.html" class="btn btn-primary">Budget berechnen <span aria-hidden="true">→</span></a>
+        <div class="budget-teaser-meta">Kostenlos · Unverbindlich · ohne Kontaktdaten · ca. 2–3 Minuten</div>
+      </div>
+      <div class="budget-preview reveal" aria-hidden="true">
+        <div class="budget-preview-label">Ihre individuelle Auswertung</div>
+        <div class="budget-preview-row"><span class="budget-preview-icon">€</span><div><strong>Realistische Budgetspanne</strong><span>Statt eines unpassenden Pauschalpreises</span></div></div>
+        <div class="budget-preview-row"><span class="budget-preview-icon">⌁</span><div><strong>Technische Einordnung</strong><span>Systeme, Daten, KI und Sonderfälle berücksichtigt</span></div></div>
+        <div class="budget-preview-row"><span class="budget-preview-icon">✓</span><div><strong>Care-Empfehlung</strong><span>Passend zu Kritikalität und Betriebsmodell</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KI-TELEFONASSISTENT SHOWCASE ================= -->
+  <section class="section" id="ki-telefonassistent">
+    <div class="wrap hero-inner">
+      <div class="reveal">
+        <div class="eyebrow">Beispielprojekt</div>
+        <h2>Unser KI-Telefonassistent</h2>
+        <p class="subhead" style="margin-bottom:28px;">Eines unserer eigenen Automatisierungsprojekte: ein KI-Telefonassistent, der Anrufe entgegennimmt, Termine vereinbart und Ihr Team entlastet, rund um die Uhr. Rufen Sie unsere Demo-Nummer an und erleben Sie ihn live.</p>
+
+        <div class="hero-ctas">
+          <a href="#booking-link" class="btn btn-primary js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+          <a href="tel:+493075676804" class="btn btn-secondary call-test-btn" aria-label="Jetzt anrufen und den KI-Telefonassistenten live testen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Jetzt KI-Anruf testen
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="orb-card-wrap">
+          <div class="float-badge badge-top-left"><span class="badge-dot"></span> 24/7 aktiv</div>
+
+          <div class="orb-card">
+            <div class="orb-card-header">
+              <div class="call-status"><span class="dot"></span> Live-Anruf</div>
+              <div class="call-timer" id="callTimer">00:14</div>
+            </div>
+
+            <div class="orb-stage">
+              <span class="orb-ring ring-1"></span>
+              <span class="orb-ring ring-2"></span>
+              <div class="orb-core">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </div>
+            </div>
+
+            <div class="waveform" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="live-caption">
+              <span class="caption-label">KI-Assistent</span>
+              <p id="captionText">Guten Tag, hier ist der digitale Assistent von Müller Sanitär. Wie kann ich Ihnen helfen?</p>
+            </div>
+
+            <div class="call-mock-footer">
+              <span>Termin wird direkt im Kalender eingetragen</span>
+              <strong>&#10003; Erledigt</strong>
+            </div>
+          </div>
+
+          <div class="float-badge badge-bottom-right">⏱ Ø 3 Sek. Reaktionszeit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FÜR WEN GEEIGNET ================= -->
+  <section class="section" style="background: var(--bg-alt);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center">Einsatzbereiche</div>
+        <h2>Für wen ist das geeignet?</h2>
+        <p>Unsere Lösung funktioniert branchenübergreifend, überall dort, wo repetitive Prozesse Zeit kosten.</p>
+      </div>
+
+      <div class="chips reveal">
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><line x1="9" y1="9" x2="10" y2="9"/><line x1="9" y1="13" x2="10" y2="13"/><line x1="9" y1="17" x2="10" y2="17"/><line x1="14" y1="9" x2="15" y2="9"/><line x1="14" y1="13" x2="15" y2="13"/><line x1="14" y1="17" x2="15" y2="17"/></svg> Hausverwaltungen</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.79 1.11l-.81 1.62A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg> Autohäuser</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Handwerk</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg> Arztpraxen</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Kanzleien</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg> Dienstleister</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2l1.5 4h9L18 2"/><path d="M3 6h18l-1.5 14a2 2 0 0 1-2 2H6.5a2 2 0 0 1-2-2L3 6z"/><path d="M9 10a3 3 0 0 0 6 0"/></svg> Einzelhandel</div>
+      </div>
+
+      <p class="industries-note reveal">Sie sehen Ihre Branche nicht in der Liste? Kein Problem: Unsere Automatisierungen lassen sich an nahezu jedes Geschäftsmodell anpassen.</p>
+    </div>
+  </section>
+
+  <!-- ================= SOCIAL PROOF ================= -->
+  <section class="section" id="referenzen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center">Referenzen</div>
+        <h2>Das sagen unsere Kunden</h2>
+        <p>Erfahrungen aus der Praxis, direkt von den Unternehmen, die wir automatisieren.</p>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-card reveal">
+          <p class="quote">Wir verwalten zahlreiche Objekte und bekommen entsprechend viele Anrufe von Mietern und Eigentümern, oft zur gleichen Zeit. Der KI-Telefonassistent nimmt die Anliegen zuverlässig auf und leitet dringende Fälle sofort an uns weiter. Das entlastet unser Team enorm.</p>
+          <div class="proof-byline">
+            <div class="proof-avatar-ring"><div class="proof-avatar">CB</div></div>
+            <div>
+              <span class="who">Claudia Brinker</span>
+              <span class="who-company">Gehrung, Gesellschaft für Grundbesitz und Vermögensverwaltung mbH</span>
+            </div>
+          </div>
+        </div>
+        <div class="proof-card reveal">
+          <p class="quote">Unser Support-Telefon stand nie still, viele Anfragen wiederholten sich ständig. Seit der KI-Telefonassistent die Erstaufnahme übernimmt, landen bei uns nur noch die wirklich dringenden Fälle, und unser Team hat den Kopf frei für die eigentliche IT-Arbeit.</p>
+          <div class="proof-byline">
+            <div class="proof-avatar-ring"><div class="proof-avatar">TS</div></div>
+            <div>
+              <span class="who">Tobias Scholz</span>
+              <span class="who-company">SCHOLZCON GmbH</span>
+            </div>
+          </div>
+        </div>
+        <div class="proof-card reveal">
+          <p class="quote">Finn hat für uns einen KI-Telefonassistenten gebaut, der alle eingehenden Anrufe zuverlässig entgegennimmt. Das spart uns fast 12 Stunden pro Woche.</p>
+          <div class="proof-byline">
+            <div class="proof-avatar-ring"><div class="proof-avatar">R</div></div>
+            <div>
+              <span class="who">Renzo</span>
+              <span class="who-company">Fuchs &amp; Medien GmbH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TEAM ================= -->
+  <section class="section team-spectacular" id="team">
+    <div class="hero-bg" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+    </div>
+
+    <div class="wrap" style="position:relative; z-index:1;">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center">Team</div>
+        <h2>Die Spezialisten hinter Ihrer Automatisierung</h2>
+        <p>Sie arbeiten direkt mit den Spezialisten, die Ihr Unternehmen verstehen und Ihre Automatisierung von Anfang bis Ende bauen.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <span class="team-index">01</span>
+          <div class="team-avatar-ring">
+            <img class="team-avatar team-avatar-photo" src="assets/finn-schulte.png" alt="Finn Schulte">
+          </div>
+          <h3>Finn Schulte</h3>
+          <span class="team-role">Gründer</span>
+        </div>
+        <div class="team-card reveal">
+          <span class="team-index">02</span>
+          <div class="team-avatar-ring">
+            <img class="team-avatar team-avatar-photo" src="assets/chris-oesterreich.jpg" alt="Chris Oesterreich">
+          </div>
+          <h3>Chris Oesterreich</h3>
+          <span class="team-role">Automation Expert</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq" style="background: var(--bg-alt);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center">Häufige Fragen</div>
+        <h2>Antworten auf die wichtigsten Fragen</h2>
+        <p>Falls Ihre Frage hier nicht beantwortet wird, sprechen wir gerne persönlich darüber.</p>
+      </div>
+
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            Was kostet eine Automatisierung von LiraTech?
+            <span class="icon"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="0" x2="6" y2="12"/><line x1="0" y1="6" x2="12" y2="6"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Die Kosten richten sich nach Umfang und Anforderungen Ihres Unternehmens. Im kostenlosen Erstgespräch erstellen wir Ihnen ein transparentes, auf Sie zugeschnittenes Angebot, ohne versteckte Kosten.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Wie lange dauert die Umsetzung?
+            <span class="icon"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="0" x2="6" y2="12"/><line x1="0" y1="6" x2="12" y2="6"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Je nach Komplexität ist Ihre Automatisierung innerhalb weniger Tage bis Wochen einsatzbereit. Nach der Einrichtung folgt eine Testphase, bevor der Live-Betrieb startet.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Auf welche Prozesse spezialisiert sich LiraTech?
+            <span class="icon"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="0" x2="6" y2="12"/><line x1="0" y1="6" x2="12" y2="6"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Wir automatisieren repetitive Prozesse rund um Telefon, E-Mail, Dokumente, Terminplanung und CRM. Unser KI-Telefonassistent ist ein Beispiel für ein solches Projekt.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Was passiert bei komplexen oder ungewöhnlichen Anfragen?
+            <span class="icon"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="0" x2="6" y2="12"/><line x1="0" y1="6" x2="12" y2="6"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Erkennt die Automatisierung, dass eine Anfrage menschliche Unterstützung braucht, leitet sie diese weiter oder nimmt eine Nachricht für einen Rückruf auf, je nachdem, wie Sie es wünschen.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Wie sieht die Vertragslaufzeit aus?
+            <span class="icon"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="0" x2="6" y2="12"/><line x1="0" y1="6" x2="12" y2="6"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Wir bieten flexible Vertragsmodelle ohne lange Bindung. Die genauen Konditionen besprechen wir individuell im Erstgespräch.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Wie steht es um Datenschutz und Datensicherheit?
+            <span class="icon"><svg viewBox="0 0 12 12" fill="none" stroke-width="2" stroke-linecap="round"><line x1="6" y1="0" x2="6" y2="12"/><line x1="0" y1="6" x2="12" y2="6"/></svg></span>
+          </button>
+          <div class="faq-answer"><p>Alle Daten werden DSGVO-konform in Deutschland/EU gehostet und verarbeitet. Wir gehen bewusst sorgsam mit den Daten Ihrer Kunden um.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="final-cta">
+    <div class="wrap final-cta-inner reveal">
+      <h2>In 15 Minuten herausfinden, welche Prozesse sich in Ihrem Unternehmen automatisieren lassen</h2>
+      <p>Unverbindlich, kostenlos und ohne technisches Vorwissen. Wir zeigen Ihnen konkret, wie Automatisierung Ihnen Zeit und Nerven spart.</p>
+      <a href="#booking-link" class="btn btn-primary js-booking-link" target="_blank" rel="noopener">Jetzt Angebot einholen</a>
+      <div class="final-cta-meta">Keine Verpflichtung · Direkter Termin im Kalender · Antworten auf alle Ihre Fragen</div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoTGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:var(--indigo-light)"/>
+              <stop offset="100%" style="stop-color:var(--indigo)"/>
+            </linearGradient>
+          </defs>
+          <rect x="30" y="40" width="28" height="120" rx="5" fill="#fff"/>
+          <rect x="30" y="134" width="64" height="26" rx="5" fill="#fff"/>
+          <rect x="108" y="40" width="86" height="26" rx="5" fill="url(#logoTGradientFooter)"/>
+          <rect x="137" y="66" width="28" height="94" rx="5" fill="url(#logoTGradientFooter)"/>
+        </svg>
+        <span class="logo-text">Lira<span style="color:var(--indigo-light)">Tech</span></span>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:finn@liratech.de" class="js-contact-email">finn@liratech.de</a>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="#integrationen">Integrationen</a>
+          <a href="#leistungen">Leistungen</a>
+          <a href="automation-rechner.html">Budget-Rechner</a>
+          <a href="#team">Team</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="#" id="cookieSettingsLink">Cookie-Einstellungen</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> LiraTech. Alle Rechte vorbehalten.</span>
+      <span>Technologie-Partner: Fonio</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= COOKIE BANNER ================= -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie-Einstellungen">
+  <div class="cookie-banner-text">
+    <strong>Wir verwenden Cookies</strong>
+    <p>Wir nutzen technisch notwendige Cookies, damit diese Website funktioniert. Optionale Cookies für Statistik und Marketing setzen wir nur mit Ihrer Einwilligung. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  </div>
+  <div class="cookie-banner-actions">
+    <button type="button" class="btn btn-secondary btn-small" id="cookieReject">Nur notwendige</button>
+    <button type="button" class="btn btn-primary btn-small" id="cookieAccept">Alle akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  // ---- Cookie consent ----
+  // Nutzung für später: window.getCookieConsent()?.value === "all" -> optionale Skripte (z.B. Analytics) laden.
+  (function(){
+    const STORAGE_KEY = "liratech-cookie-consent";
+    const banner = document.getElementById("cookieBanner");
+    const acceptBtn = document.getElementById("cookieAccept");
+    const rejectBtn = document.getElementById("cookieReject");
+    const reopenLink = document.getElementById("cookieSettingsLink");
+
+    function getConsent(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e){ return null; }
+    }
+    function setConsent(value){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ value, date: new Date().toISOString() }));
+    }
+    function showBanner(){ banner?.classList.add("visible"); }
+    function hideBanner(){ banner?.classList.remove("visible"); }
+
+    if (banner && !getConsent()) showBanner();
+
+    acceptBtn?.addEventListener("click", () => { setConsent("all"); hideBanner(); });
+    rejectBtn?.addEventListener("click", () => { setConsent("necessary"); hideBanner(); });
+    reopenLink?.addEventListener("click", (e) => { e.preventDefault(); showBanner(); });
+
+    window.getCookieConsent = getConsent;
+  })();
+
+  // ---- Custom cursor ----
+  if (window.matchMedia("(pointer: fine)").matches) {
+    document.documentElement.classList.add("custom-cursor-active");
+
+    const cursorDot = document.createElement("div");
+    cursorDot.className = "cursor-dot";
+    const cursorRing = document.createElement("div");
+    cursorRing.className = "cursor-ring";
+    document.body.appendChild(cursorDot);
+    document.body.appendChild(cursorRing);
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let cursorVisible = false;
+
+    const showCursor = () => {
+      if (!cursorVisible) {
+        cursorVisible = true;
+        cursorDot.style.opacity = "1";
+        cursorRing.style.opacity = "1";
+      }
+    };
+    const hideCursor = () => {
+      cursorVisible = false;
+      cursorDot.style.opacity = "0";
+      cursorRing.style.opacity = "0";
+    };
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      showCursor();
+    });
+    document.addEventListener("mouseleave", hideCursor);
+    document.addEventListener("mouseenter", showCursor);
+    window.addEventListener("mousedown", () => cursorRing.classList.add("click"));
+    window.addEventListener("mouseup", () => cursorRing.classList.remove("click"));
+
+    (function animateRing() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateRing);
+    })();
+
+    const hoverSelector = "a, button, .btn, .chip, .faq-question, input, textarea, select, .offer-card, .integration-tile, .proof-card, .bento-card, .team-card, .menu-toggle";
+    document.addEventListener("mouseover", (e) => {
+      if (e.target.closest(hoverSelector)) cursorRing.classList.add("hover");
+    });
+    document.addEventListener("mouseout", (e) => {
+      if (e.target.closest(hoverSelector)) cursorRing.classList.remove("hover");
+    });
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ---- Hero: rotating word (type / delete) ----
+  const rotatingWords = ["Prozesse", "Aufgaben", "Abläufe", "Workflows"];
+  const rotatingEl = document.getElementById("rotatingWord");
+  if (rotatingEl) {
+    let wordIdx = 0, charIdx = rotatingWords[0].length, deleting = false;
+    const typeTick = () => {
+      const word = rotatingWords[wordIdx];
+      if (!deleting) {
+        charIdx++;
+        rotatingEl.textContent = word.slice(0, charIdx);
+        if (charIdx >= word.length) {
+          deleting = true;
+          setTimeout(typeTick, 1700);
+          return;
+        }
+        setTimeout(typeTick, 85);
+      } else {
+        charIdx--;
+        rotatingEl.textContent = word.slice(0, charIdx);
+        if (charIdx <= 0) {
+          deleting = false;
+          wordIdx = (wordIdx + 1) % rotatingWords.length;
+          setTimeout(typeTick, 300);
+          return;
+        }
+        setTimeout(typeTick, 45);
+      }
+    };
+    setTimeout(typeTick, 1700);
+  }
+
+  // ---- Hero: automation pipeline animation ----
+  const flowSteps = document.querySelectorAll("#flowPipeline .flow-step");
+  if (flowSteps.length) {
+    let stepIndex = -1;
+    const advanceFlow = () => {
+      stepIndex++;
+      if (stepIndex >= flowSteps.length) {
+        flowSteps.forEach(s => s.classList.remove("active", "done"));
+        stepIndex = 0;
+      }
+      flowSteps.forEach((s, i) => {
+        s.classList.toggle("active", i === stepIndex);
+        s.classList.toggle("done", i < stepIndex);
+      });
+    };
+    advanceFlow();
+    setInterval(advanceFlow, 1400);
+  }
+
+  // ---- Call demo: live caption cycling ----
+  const captions = [
+    "Guten Tag, hier ist der digitale Assistent von Müller Sanitär. Wie kann ich Ihnen helfen?",
+    "Gerne. Ich habe morgen um 14 Uhr oder Donnerstag um 9 Uhr frei. Was passt Ihnen besser?",
+    "Perfekt, der Termin ist gebucht. Sie erhalten gleich eine Bestätigung per SMS."
+  ];
+  const captionEl = document.getElementById("captionText");
+  if (captionEl) {
+    let capIndex = 0;
+    setInterval(() => {
+      capIndex = (capIndex + 1) % captions.length;
+      captionEl.style.opacity = "0";
+      setTimeout(() => {
+        captionEl.textContent = captions[capIndex];
+        captionEl.style.opacity = "1";
+      }, 300);
+    }, 3400);
+  }
+
+  // ---- Call demo: live call timer ----
+  const timerEl = document.getElementById("callTimer");
+  if (timerEl) {
+    let seconds = 14;
+    setInterval(() => {
+      seconds++;
+      const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+      const s = String(seconds % 60).padStart(2, "0");
+      timerEl.textContent = `${m}:${s}`;
+    }, 1000);
+  }
+
+  // ---- Mobile menu ----
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+  const iconOpen = document.getElementById("menuIconOpen");
+  const iconClose = document.getElementById("menuIconClose");
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mainNav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    iconOpen.style.display = isOpen ? "none" : "block";
+    iconClose.style.display = isOpen ? "block" : "none";
+  });
+
+  mainNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      iconOpen.style.display = "block";
+      iconClose.style.display = "none";
+    });
+  });
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll(".faq-item").forEach(item => {
+    const question = item.querySelector(".faq-question");
+    question.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(openItem => {
+        if (openItem !== item) openItem.classList.remove("open");
+      });
+      item.classList.toggle("open", !isOpen);
+    });
+  });
+
+  // ---- Scroll reveal animations ----
+  const revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("in-view"));
+  }
+</script>
+<script type="module">
+  import { applySiteConfig } from "./assets/js/site-config.js";
+  applySiteConfig(document);
+</script>
+
+</body>
+</html>
