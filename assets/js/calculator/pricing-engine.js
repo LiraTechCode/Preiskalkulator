@@ -312,6 +312,7 @@ function calculateOverlapCompression(modules) {
   let relatedIndex = 0;
   let min = 0;
   let max = 0;
+  const contributions = [];
   const minFactors = [0.75, 0.65, 0.55, 0.48, 0.45];
   const maxFactors = [0.6, 0.5, 0.42, 0.36, 0.33];
   for (const item of modules) {
@@ -322,10 +323,24 @@ function calculateOverlapCompression(modules) {
       maxFactor = maxFactors[Math.min(relatedIndex, maxFactors.length - 1)];
       relatedIndex += 1;
     }
-    min += item.minPrice * minFactor;
-    max += item.maxPrice * maxFactor;
+    const contributionMin = roundTo(item.minPrice * minFactor, 50);
+    const contributionMax = roundTo(item.maxPrice * maxFactor, 50);
+    min += contributionMin;
+    max += contributionMax;
+    contributions.push({
+      id: item.id,
+      name: item.publicLabel,
+      category: item.category,
+      min: contributionMin,
+      max: contributionMax,
+      overlapAdjusted: minFactor < 1 || maxFactor < 1
+    });
   }
-  return { min, max };
+  return { min, max, contributions };
+}
+
+function roundTo(value, increment = 100) {
+  return Math.round(value / increment) * increment;
 }
 
 function getCombinedRisk(state, complexity) {
@@ -397,11 +412,14 @@ export function calculateEstimate(state) {
   const compressed = calculateOverlapCompression(selected.modules);
   const risk = getCombinedRisk(state, complexity);
   const floor = determineFloor(state, selected.rpaKey, complexity);
-  let rawMin = Math.max(floor, compressed.min * (1 + risk.min));
-  let rawMax = Math.max(floor * 1.25, compressed.max * (1 + risk.max));
+  const afterRiskMin = compressed.min * (1 + risk.min);
+  const afterRiskMax = compressed.max * (1 + risk.max);
+  let rawMin = Math.max(floor, afterRiskMin);
+  let rawMax = Math.max(floor * 1.25, afterRiskMax);
 
   const hasUnknown = Object.values(state.connections || {}).includes("unknown") || state.dataComplexity === "unknown" || (state.ai || []).includes("unknown");
-  if (hasUnknown) rawMax *= 1.12;
+  const uncertaintyMax = hasUnknown ? rawMax * 0.12 : 0;
+  if (hasUnknown) rawMax += uncertaintyMax;
 
   const orgaLegacy = state.systems?.includes("OrgaMAX Enterprise") && Object.values(state.connections || {}).some((value) => ["desktop", "remote"].includes(value));
   let budget = orgaLegacy ? { min: 15000, max: 25000, type: "range", label: "15.000–25.000 €+", plus: true } : selectBudgetBand(rawMin, rawMax);
@@ -413,6 +431,24 @@ export function calculateEstimate(state) {
   const result = {
     version: "1.0", budget, complexity, care, hosting, discovery,
     modules: selected.modules.filter((item) => !item.internalOnly).map(({ id, publicLabel, category }) => ({ id, name: publicLabel, category })),
+    breakdown: {
+      items: compressed.contributions,
+      subtotal: { min: compressed.min, max: compressed.max },
+      risk: {
+        minPercent: Math.round(risk.min * 100),
+        maxPercent: Math.round(risk.max * 100),
+        minAmount: roundTo(compressed.min * risk.min),
+        maxAmount: roundTo(compressed.max * risk.max)
+      },
+      uncertainty: hasUnknown ? { maxPercent: 12, maxAmount: roundTo(uncertaintyMax) } : null,
+      floor: {
+        value: floor,
+        appliedMin: floor > afterRiskMin,
+        appliedMax: floor * 1.25 > afterRiskMax
+      },
+      calculated: { min: roundTo(rawMin), max: roundTo(rawMax) },
+      publicBudget: { ...budget }
+    },
     diagnostics: { rawMin: Math.round(rawMin), rawMax: Math.round(rawMax), floor, risk, rpaKey: selected.rpaKey },
     externalCostsNotice: "Drittanbieter-, Lizenz- und nutzungsabhängige Kosten sind nicht Bestandteil der Budgetindikation, sofern nicht ausdrücklich angegeben."
   };

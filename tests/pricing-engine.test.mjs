@@ -20,6 +20,9 @@ test("A – ein klarer API-Workflow bleibt oberhalb des Projekt-Floors", () => {
   }));
   assert.ok(result.budget.min >= 2900);
   assert.equal(result.complexity.publicLabel, "Standard");
+  assert.equal(result.breakdown.items.reduce((sum, item) => sum + item.min, 0), result.breakdown.subtotal.min);
+  assert.equal(result.breakdown.items.reduce((sum, item) => sum + item.max, 0), result.breakdown.subtotal.max);
+  assert.equal(result.breakdown.publicBudget.label, result.budget.label);
 });
 
 test("B – Excel zu E-Mail wird als kompakter Standard-Workflow kalibriert", () => {

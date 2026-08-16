@@ -208,6 +208,7 @@ function renderResultStep(state) {
     : "Nutzungs-/Lizenzkosten separat";
   const discovery = result.discovery.required ? `<div class="discovery-card"><h3><span aria-hidden="true">⌁</span> Technische Analyse empfohlen</h3><p>Für Ihr Projekt sollten wir die beteiligten Systeme vor einem verbindlichen Angebot technisch prüfen.</p><span class="discovery-price">${escapeHtml(result.discovery.label)}: ${formatNumber(result.discovery.range.min)}–${formatCurrency(result.discovery.range.max)}</span></div>` : "";
   const modules = result.modules.map((item) => `<div class="module-card"><span aria-hidden="true">✓</span>${escapeHtml(item.name)}</div>`).join("");
+  const priceBreakdown = renderPriceBreakdown(result);
   const summary = [
     ["Prozess", processLabels.join(", ")], ["Branche", getOptionLabel(INDUSTRIES, state.industry)],
     ["Systeme", systemLabels.join(", ")], ["Verbindungsarten", connections.join(" · ")],
@@ -223,12 +224,30 @@ function renderResultStep(state) {
     <div class="result-primary-grid"><article class="result-budget"><div class="result-label">Geschätztes Projektbudget</div><h3 class="budget-value">${escapeHtml(result.budget.label)}</h3><p class="budget-caption">Einmalige Umsetzung · unverbindliche Orientierung</p></article><article class="result-care"><div class="result-label">Empfohlene Betreuung</div><h3 class="care-value">${escapeHtml(result.care.package)}</h3><div class="care-price">ab ${formatCurrency(result.care.monthlyFrom)}/Monat</div><p class="care-reason">${escapeHtml(result.care.reasons[0])}</p></article></div>
     ${discovery}
     <section class="result-section"><h3 class="result-section-title">Enthaltene Leistungsbereiche</h3><div class="module-grid">${modules}</div></section>
+    ${priceBreakdown}
     <section class="result-section"><h3 class="result-section-title">Ihre Konfiguration</h3><dl class="summary-list">${summary}</dl></section>
     <section class="result-section"><h3 class="result-section-title">Technische Infrastruktur</h3><div class="hosting-card"><div><h3>${escapeHtml(result.hosting.name)}</h3><p>Care und Infrastruktur bleiben getrennte Positionen. Die Einrichtung ist in der Kalkulation berücksichtigt, soweit bereits gewählt.</p></div><div class="hosting-price">${hostingMonthly}</div></div></section>
     <section class="result-section price-explanation"><h3>Warum eine Preisspanne?</h3><p>Der tatsächliche Aufwand hängt unter anderem von vorhandenen Schnittstellen, Datenqualität, individuellen Geschäftsregeln, Zugriffsrechten und der technischen Umgebung ab. Nach einem kurzen Automation Check kann LiraTech den Aufwand genauer bestimmen.</p><p>Die Berechnung ist eine unverbindliche Budgetorientierung und kein verbindliches Angebot.</p><p>${escapeHtml(result.externalCostsNotice)}</p></section>
     <section class="result-cta" id="booking"><h3>Projekt mit LiraTech besprechen</h3><p>Im kostenlosen Automation Check klären wir die wichtigsten technischen Fragen und den sinnvollsten nächsten Schritt.</p><div class="result-cta-actions"><a class="btn btn-primary js-booking-link" href="${escapeHtml(SITE_CONFIG.bookingLink)}" target="_blank" rel="noopener" data-booking>Automation Check buchen <span aria-hidden="true">→</span></a></div></section>
     <div class="result-footer-actions"><button type="button" class="btn btn-quiet" data-action="reset">↻ Neue Kalkulation</button><button type="button" class="btn btn-secondary btn-small" data-action="print">Ergebnis drucken / als PDF</button></div>
   </div>`;
+}
+
+function renderPriceBreakdown(result) {
+  const breakdown = result.breakdown;
+  if (!breakdown) return "";
+  const formatRange = (range) => range.min === range.max
+    ? formatCurrency(range.min)
+    : `${formatNumber(range.min)}–${formatCurrency(range.max)}`;
+  const rows = breakdown.items.map((item) => `<tr><td><span class="breakdown-item-name">${escapeHtml(item.name)}</span>${item.overlapAdjusted ? '<small>Synergien mit anderen Bausteinen berücksichtigt</small>' : ""}</td><td>${formatRange(item)}</td></tr>`).join("");
+  const uncertaintyRow = breakdown.uncertainty ? `<div class="calculation-row"><div><span>Unsicherheit bei noch offenen Angaben</span><small>Verbreitert nur die obere Grenze</small></div><strong>bis +${breakdown.uncertainty.maxPercent} % · ${formatCurrency(breakdown.uncertainty.maxAmount)}</strong></div>` : "";
+  const floorRow = breakdown.floor.appliedMin || breakdown.floor.appliedMax ? `<div class="calculation-row"><div><span>Projekt-Mindestkorridor</span><small>Schützt vor einer unrealistisch niedrigen RPA-/Enterprise-Schätzung</small></div><strong>ab ${formatCurrency(breakdown.floor.value)}</strong></div>` : "";
+
+  return `<section class="result-section price-breakdown"><div class="breakdown-heading"><div><h3 class="result-section-title">So setzt sich Ihre Budgetspanne zusammen</h3><p>Die Budgetanteile berücksichtigen bereits Überschneidungen zwischen zusammengehörenden Bausteinen. Dadurch wird derselbe Integrationsaufwand nicht doppelt berechnet.</p></div><span>Transparente Kalkulation</span></div>
+    <div class="breakdown-table-wrap"><table class="breakdown-table"><thead><tr><th scope="col">Leistungsbereich</th><th scope="col">Budgetanteil</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><th scope="row">Zwischensumme nach Überschneidungen</th><td>${formatRange(breakdown.subtotal)}</td></tr></tfoot></table></div>
+    <div class="calculation-stack"><div class="calculation-row"><div><span>Technischer Komplexitäts- und Risikopuffer</span><small>Schnittstellen, Testaufwand, Sonderfälle und Betriebsrisiko</small></div><strong>+${breakdown.risk.minPercent}–${breakdown.risk.maxPercent} % · ${formatNumber(breakdown.risk.minAmount)}–${formatCurrency(breakdown.risk.maxAmount)}</strong></div>${uncertaintyRow}${floorRow}<div class="calculation-row calculated-range"><div><span>Rechnerischer Korridor vor Rundung</span><small>Interne Kalkulation nach allen gewählten Faktoren</small></div><strong>${formatRange(breakdown.calculated)}</strong></div><div class="calculation-row public-range"><div><span>Kaufmännisch gerundete Budgetindikation</span><small>Die öffentlich gezeigte, bewusst nicht überpräzise Spanne</small></div><strong>${escapeHtml(result.budget.label)}</strong></div></div>
+    <p class="breakdown-note">Die Aufstellung ist eine unverbindliche Aufwandsschätzung. Bei „ab“- oder „+“-Korridoren bestimmen wir die obere Grenze nach der empfohlenen technischen Analyse.</p>
+  </section>`;
 }
 
 function validateProcess(state) {
